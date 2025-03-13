@@ -1,0 +1,624 @@
+*,*:before,*:after {
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	margin:0;
+	padding:0
+}
+body {
+	line-height:1.5;
+	font-family:sans-serif;
+	font-size:16px;     
+	color:#fff;
+	background-color:#fff;
+}
+#header {
+	width:100%;
+	max-width:1920px;
+	position:relative;
+	margin:0 auto;
+	border:none;
+	outline:none;
+	background:#000000;
+	z-index:1;
+	-moz-box-shadow:5px 5px 20px rgba(68,68,68,0.3);
+	-webkit-box-shadow:5px 5px 20px rgba(68,68,68,0.3);
+	box-shadow:5px 5px 20px rgba(0,0,0,0.3);
+}
+.centrar {
+	margin:0 auto;
+	text-align:center;
+	position:relative;
+	width:100%;
+	max-width:324px;
+	height:auto;
+}
+#header:after {
+	content:"";
+	clear:both;
+	display:block
+}
+@-webkit-keyframes rotateplane {
+	0% {
+				top:10px;
+	}
+	25% {
+				top:14px;
+	}
+	50% {
+				top:19px;
+	}
+	75% {
+				top:24px;
+	}
+	100% {
+				top:28px;
+	}
+}
+@-moz-keyframes rotateplane {
+	0% {
+				top:10px;
+	}
+	25% {
+				top:14px;
+	}
+	50% {
+				top:19px;
+	}
+	75% {
+				top:24px;
+	}
+	100% {
+				top:28px;
+	}
+}
+@-o-keyframes rotateplane {
+	0% {
+				top:10px;
+	}
+	25% {
+				top:14px;
+	}
+	50% {
+				top:19px;
+	}
+	75% {
+				top:24px;
+	}
+	100% {
+				top:28px;
+	}
+}
+.modal-content,.modal-header {
+	background-color:#fff;
+	color:#fff;
+	/*border-bottom:2px solid #393a3c;*/
+}
+    .modal-content h1 {
+        font-size: 26px;
+        font-family: 'typewriter_condensedbold';
+        color: #000;
+        text-align: left;
+        padding: 0px 30px;
+    }
+.linea {
+		border-bottom:2px solid #ff6600;
+		padding:0px 30px;
+}
+.login-box-body {
+	padding:0px 30px;
+	background-color:#fff;
+}
+.login-box-msg,.register-box-msg {
+	margin:0px;
+	text-align:center;
+}
+.modal-sm {
+	max-width:640px;
+	width:100%;
+	margin:0 auto;
+	position:relative;
+}
+.modal-dialog {
+	max-width:640px;
+	width:100%;
+	margin:0 auto;
+	position:relative;
+	margin-top:60px;
+}
+input {
+	width:100%;
+}
+.logo {
+	float:inherit;
+	margin:0 auto;
+	position:relative;
+	padding:26px 0 26px;
+	width:100%;
+	max-width:250px;
+}
+.logo img {
+	display:block;
+	padding:0 0 0 20px;
+	width:100%;
+	max-width:250px;
+}
+@media only screen and (max-width:1720px) {
+	#header {
+							width:100%;
+							max-width:1920px;
+							position:relative;
+							margin:0 auto;
+							background-image:url(../img/headerlap.jpg);
+							background-repeat:no-repeat;
+							background-position:top center;
+							background-size:cover;
+	}
+}
+@media only screen and (max-width:1210px) {
+	#header {
+							width:100%;
+							max-width:1920px;
+							position:relative;
+							margin:0 auto;
+							background-image:url(../img/headertablet.jpg);
+							background-repeat:no-repeat;
+							background-position:top center;
+							background-size:cover;
+	}
+}
+@media only screen and (max-width:960px) {
+	#header {
+							width:100%;
+							max-width:1920px;
+							position:relative;
+							margin:0 auto;
+							background-image:url(../img/headerfull.jpg);
+							background-repeat:no-repeat;
+							background-position:top center;
+							background-size:cover;
+	}
+}
+@media only screen and (max-width:959px) {
+		.logo {
+							text-align:center;
+							margin:0 auto;
+							position:relative;
+							width:220px;
+							float:inherit
+	}
+	.logo img {
+							display:block;
+							padding:0 0 0 20px;
+							width:100%;
+							max-width:180px;
+							margin:0 auto;
+							position:relative;
+							text-align:center
+	}
+}
+@media only screen and (max-width:480px) {
+	.logo {
+							width:100%;
+							max-width:200px;
+							position:relative;
+							margin:0 auto;
+	}
+	.logo img {
+							display:block;
+							padding:0 0 0 20px;
+							width:100%;
+							max-width:180px;
+							margin:0 auto;
+							position:relative;
+							text-align:center
+	}
+}
+.logo2 {
+	width:100%;
+	max-width:1920px;
+	position:relative;
+	margin:0 auto;
+	text-align:center;
+	top:-100px;
+}
+.logo2 img {
+	max-width:20%;
+	position:relative;
+}
+.tabla1 {
+	width:60%;
+	max-width:800px;
+	background-image:url(../Imagenes%20Chico%20Harley/fondo%20pagina%202.png);
+	background-position:top center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	height:auto
+}
+.titulo {
+	font-family:'futurateeregular';
+	color:#FCF7F7;
+	font-size:20px
+}
+.letra {
+	color:#fff;
+	font-size:1em;
+	width:80%;
+	max-width:750px;
+	text-align:justify;
+	height:auto;
+ }
+.texto {
+	font-family:'futurateeregular';
+	color:#FCF7F7;
+	font-size:16px
+}
+.fuente {
+    font-family: 'typewriter_condensedregular';
+    color: #000;
+    font-size: 15px;
+}
+.fuentena {
+	color:#ea6003;
+	font-family:'futurateeregular';
+	font-size:20px
+}
+.fuentena1 {
+	color:#ea6003;
+	font-family:'futurateeregular';
+	font-size:18px;
+	position:relative;
+	left:22px
+}
+.acepto {
+	text-align:center;
+}
+.btn {
+	width:100%;
+	background-image:url(../Imagenes%20Chico%20Harley/btn-01.jpg);
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:100% 100%;
+	height:auto;
+	color:#fff;
+	padding:0.5em 0em;
+	border:2px solid #fc5a24;
+ }
+.color {
+    width:100%;
+	background-image:url(../Imagenes%20Chico%20Harley/btn-01.jpg);
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:100% 100%;
+	height:auto;
+	color:#fff;
+	padding:0.5em 0em;
+	border:2px solid #fc5a24;
+}
+
+
+.button8 {
+    width: 100% !important;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    border: 2px solid #f8670e;
+    padding: 10px 30px 10px 30px;
+    font-family: 'typewriter_condensedbold';
+    font-size: 18px;
+    background-color: transparent;
+    margin-top: -10px;
+    color: #f8670e
+}
+
+    .button8:hover {
+        color: #000;
+        text-decoration: none;
+        font-family: 'typewriter_condensedbold';
+        padding: 10px 30px 10px 30px;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        transition: all 0.5s;
+        border: 2px solid #000;
+    }
+
+/*.btn[type="button"]:hover {
+	background-image:url(../Imagenes%20Chico%20Harley/btn-01.jpg);
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:100% 100%;
+	color:#fff;
+	border:2px solid #393a3c;
+	padding:0.5em 0em;
+}*/
+/*--footer start here--*/
+
+/*===== footer ===*/
+footer[role="footer"] {
+    background-color: #000;
+    padding-top: 35px;
+    padding-bottom: 20px;
+    width: 100%;
+    max-width: 1920px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.footer, .contenido {
+    width: 100%;
+    max-width: 1600px;
+    position: relative;
+    margin: 0 auto
+}
+
+    .footer > .row {
+        width: 100% !important;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+
+.footer, h1 {
+    color: #FFFFFF;
+    font-family: 'typewriter_condensedbold';
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.footer, a {
+    color: #FFFFFF;
+    font-family: 'typewriter_condensedregular';
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 1.2em;
+    letter-spacing: 0.6px;
+}
+
+    .footer, a:hover {
+        color: #ea6003;
+        cursor: pointer
+    }
+
+.footer, p {
+    color: #FFFFFF;
+    font-family: 'typewriter_condensedregular';
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 1.2em;
+    letter-spacing: 0.6px;
+}
+
+.footer, ul li {
+    text-decoration: none;
+    outline: none;
+    outline-color: none;
+    list-style: none
+}
+
+.espacios {
+    height: 30px;
+}
+
+.espaciogrande {
+    width: 100%;
+    max-width: 1920px;
+    height: 40px;
+    background-color: #000;
+}
+
+@media (min-width:992px) {
+    .footer .col-md-5, .cinco {
+        width: 100%;
+        max-width: 5% !important;
+        float: left;
+        position: relative
+    }
+
+    .footer .col-md-5, .trienta {
+        width: 100%;
+        max-width: 35% !important;
+        float: left;
+        position: relative
+    }
+
+    .footer .col-md-5, .quince {
+        width: 100%;
+        max-width: 15% !important;
+        float: left;
+        position: relative
+    }
+
+    .footer .col-md-5, .diezchioso {
+        width: 100%;
+        max-width: 18.049% !important;
+        float: left;
+        position: relative
+    }
+
+    .footer .col-md-5, .vientidos {
+        width: 100%;
+        max-width: 22.902% !important;
+        float: left;
+        position: relative
+    }
+
+
+    .footer .col-md-5, .dos {
+        width: 100%;
+        max-width: 2.709% !important;
+        float: left;
+        position: relative
+    }
+}
+
+@media (max-width:1024px) and (min-width:768px) {
+    .footer .col-md-5, .cinco {
+        width: 100%;
+        max-width: 5% !important;
+        float: left;
+        position: relative
+    }
+
+    .footer .col-md-5, .trienta {
+        width: 100%;
+        max-width: 40% !important;
+        float: left;
+        position: relative
+    }
+
+    .footer .col-md-5, .quince {
+        width: 100%;
+        max-width: 5% !important;
+        float: left;
+        position: relative
+    }
+
+    .footer .col-md-5, .diezchioso {
+        width: 100%;
+        max-width: 11% !important;
+        float: left;
+        position: relative
+    }
+
+    .footer .col-md-5, .vientidos {
+        width: 100%;
+        max-width: 35% !important;
+        float: left;
+        position: relative
+    }
+
+
+    .footer .col-md-5, .dos {
+        width: 100%;
+        max-width: 3% !important;
+        float: left;
+        position: relative
+    }
+}
+
+@media (max-width:746px) {
+    .footer .col-md-5, .cinco {
+        width: 100%;
+        max-width: 100% !important;
+        float: none;
+        position: relative;
+        display: none
+    }
+
+    .footer .col-md-5, .trienta {
+        width: 100% !important;
+        max-width: 100% !important;
+        float: inherit !important;
+        position: relative
+    }
+
+    .footer .col-md-5, .quince {
+        width: 100%;
+        max-width: 15% !important;
+        float: none;
+        position: relative;
+        display: none
+    }
+
+    .footer .col-md-5, .diezchioso {
+        width: 100%;
+        max-width: 18.049% !important;
+        float: none;
+        position: relative;
+        display: none
+    }
+
+    .footer .col-md-5, .vientidos {
+        width: 100% !important;
+        max-width: 100% !important;
+        float: none !important;
+        position: relative
+    }
+
+
+    .footer .col-md-5, .dos {
+        width: 100%;
+        max-width: 2.709% !important;
+        float: none;
+        position: relative;
+        display: none
+    }
+
+
+    .footer > .row {
+        width: 100% !important;
+        display: block;
+        display: block;
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+
+.footer, .contenido {
+    width: 100%;
+    max-width: 85%;
+    position: relative;
+    margin: 0 auto
+}
+
+
+
+@media screen and (max-width:1100px) {
+		.tabla1 {
+						width:80%;
+						max-width:1920px;
+						height:auto
+	}
+}
+@media screen and (max-width:991px) {
+	.form-control {
+						display:block;
+						width:90%;
+	}
+	.form-control2 {
+						display:block;
+						width:76%;
+	}
+}
+@media screen and (max-width:768px) {
+		.logo2 {
+						width:100%;
+						max-width:1920px;
+						position:relative;
+						margin:0 auto;
+						text-align:center;
+						top:-30px;
+	}
+	.logo2 img {
+						max-width:30%;
+						position:relative;
+	}
+	.form-control,.form-control1,.form-control2 {
+						display:block;
+						width:100%;
+	}
+	label {
+						text-align:left
+	}
+	.titulo {
+					font-family:'futurateeregular';
+					color:#FCF7F7;
+					font-size:20px;
+					text-align:left
+	}
+	.btn[type="button"] {
+	font-size: 2.1vmin;
+}
+}
+@media screen and (max-width:480px) {
+btn {
+	font-size: 1.77vmin;
+}
+}
+.naranja {
+	color:#ec5b00;
+	font-family: 'futurateeregular';
+}
