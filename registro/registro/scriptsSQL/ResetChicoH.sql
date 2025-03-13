@@ -2,12 +2,17 @@ GO
 DELETE FROM [CH_Automumerios]
 go
 DBCC CHECKIDENT ('[CH_Automumerios]',reseed,0)
-go
 GO
 DELETE FROM [CH_Evento]
 go
 DBCC CHECKIDENT ('[CH_Evento]',reseed,0)
 GO
+SET IDENTITY_INSERT [dbo].[CH_Evento] ON 
+
+INSERT [dbo].[CH_Evento] ([Id_Evento], [Anio], [FechaAper], [FechaClau]) VALUES (1,Year(GETDATE()), 
+CAST(CONVERT(nvarchar(10),FORMAT(GETDATE(), 'yyyy-MM-dd')) AS Date), CAST(CONVERT(nvarchar(10),FORMAT(GETDATE(), 'yyyy-MM-dd')) AS Date))
+SET IDENTITY_INSERT [dbo].[CH_Evento] OFF
+go
 DELETE FROM [CH_Material]
 go
 DBCC CHECKIDENT ('[CH_Material]',reseed,0)
@@ -26,3 +31,8 @@ GO
 DELETE FROM [CH_Registro]
 go
 DBCC CHECKIDENT ('[CH_Registro]',reseed,0)
+go
+SET IDENTITY_INSERT [dbo].[CH_Automumerios] ON 
+
+INSERT [dbo].[CH_Automumerios] ([Id_Autonumericios], [Enumeracion], [Id_Evento]) VALUES (1, 0, 1)
+SET IDENTITY_INSERT [dbo].[CH_Automumerios] OFF
