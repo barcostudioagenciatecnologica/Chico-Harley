@@ -3,7 +3,9 @@ Imports System.Data
 
 Public Class DalRegistro
     Implements IDisposable
-    Private Const Cad As String = "Data Source=chicoharley.cnw60iy08a5z.us-east-2.rds.amazonaws.com;Initial Catalog=adminchhly_ChicoHarley;User ID=admin;Password=chico007"
+    'Private Const Cad As String = "Data Source=chicoharley.cnw60iy08a5z.us-east-2.rds.amazonaws.com;Initial Catalog=adminchhly_ChicoHarley;User ID=admin;Password=chico007"
+    Private Const Cad As String = "Data Source=.;Initial Catalog=adminchhly_ChicoHarley;User ID=sa;Password=admin123"
+
     Property ErrorMessage() As String
     Private ReadOnly _con As SqlConnection
 

@@ -193,59 +193,7 @@ Partial Class participantes
         cuerpo = cuerpo + "<strong>Numero de Serie o VIN: </strong>" + boRegistro.NoSerieVin + "<br><br>"
         cuerpo = cuerpo + "<FONT SIZE=20><strong>IMPORTANTE: EL DÍA DEL REGISTRO EN EL EVENTO ES OBLIGATORIO PRESENTAR SU NÚMERO DE FOLIO (IMPRESO O EN IMAGEN) ASÍ COMO IDENTIFICACIÓN OFICIAL (FÍSICA) PARA VALIDAR SU REGISTRO Y RECIBIR SU KIT DE BIENVENIDA</strong></font><br>"
         cuerpo = cuerpo + "<FONT SIZE=15><strong>El número de participación es único e intransferible. Favor de tomar en cuenta estos requisitos para agilizar el proceso. Cualquier duda comunicarse al 2381505344 o bien escribir al correo: chicoharley.teh@hotmail.com</strong></font><br>"
-        'Dim objRegistro As DalRegistro = New DalRegistro()
-        'Dim tabla As DataTable = objRegistro.ConsultarDataTable()
-        'Dim correo2 As New MailMessage()
-        'If tabla.Rows.Count Mod 20 = 0 Then
-        '    Dim cuerpotabla As String = "<table BORDER='3'>" 'INICIAMOS TABLA
-        '    cuerpotabla = cuerpotabla + "<tr>" ''FILA DE ENCABEZADO
-        '    cuerpotabla = cuerpotabla + "<th>NUM</th>"
-        '    cuerpotabla = cuerpotabla + "<th>CLAVE</th>"
-        '    cuerpotabla = cuerpotabla + "<th>NOMBRE</th>"
-        '    cuerpotabla = cuerpotabla + "<th>PROCEDENCIA</th>"
-        '    cuerpotabla = cuerpotabla + "<th>CELULAR</th>"
-        '    cuerpotabla = cuerpotabla + "<th>MOTOCLUB</th>"
-        '    cuerpotabla = cuerpotabla + "<th>LIDER</th>"
-        '    cuerpotabla = cuerpotabla + "<th>MARCA MOTOCICLETA</th>"
-        '    cuerpotabla = cuerpotabla + "<th>MODELO MOTOCICLETA</th>"
-        '    cuerpotabla = cuerpotabla + "<th>CILINDRADA MOTOCICLETA</th>"
-        '    cuerpotabla = cuerpotabla + "<th>CORREO ELECTRONICO</th>"
-        '    cuerpotabla = cuerpotabla + "<th>NUM. SERIE O VIN</th>"
-        '    cuerpotabla = cuerpotabla + "<th>FECHA REGISTRO</th>"
-
-        '    cuerpotabla = cuerpotabla + "</tr>" 'FIN FILA ENCABEZADO
-        '    For i As Integer = 0 To tabla.Rows.Count - 1
-        '        cuerpotabla = cuerpotabla + "<tr>"
-        '        cuerpotabla = cuerpotabla + "<td>" + (i + 1).ToString + "</td>"
-        '        cuerpotabla = cuerpotabla + "<td>" + tabla.Rows(i)("Clave_Registro").ToString() + "</td>"
-        '        cuerpotabla = cuerpotabla + "<td>" + tabla.Rows(i)("NombrePiloto").ToString() + "</td>"
-        '        cuerpotabla = cuerpotabla + "<td>" + tabla.Rows(i)("Procedencia").ToString() + "</td>"
-        '        cuerpotabla = cuerpotabla + "<td>" + tabla.Rows(i)("Celular").ToString() + "</td>"
-        '        cuerpotabla = cuerpotabla + "<td>" + tabla.Rows(i)("NombreMotoclub").ToString() + "</td>"
-        '        cuerpotabla = cuerpotabla + "<td>" + tabla.Rows(i)("Lider_Miembro").ToString() + "</td>"
-        '        cuerpotabla = cuerpotabla + "<td>" + tabla.Rows(i)("MotocicletaMarca").ToString() + "</td>"
-        '        cuerpotabla = cuerpotabla + "<td>" + tabla.Rows(i)("MotocicletaModelo").ToString() + "</td>"
-        '        cuerpotabla = cuerpotabla + "<td>" + tabla.Rows(i)("MotocicletaCilindrada").ToString() + "</td>"
-        '        cuerpotabla = cuerpotabla + "<td>" + tabla.Rows(i)("Email").ToString() + "</td>"
-        '        cuerpotabla = cuerpotabla + "<td>" + tabla.Rows(i)("No_Serie_VIN").ToString() + "</td>"
-        '        cuerpotabla = cuerpotabla + "<td>" + tabla.Rows(i)("FechaRegistro").ToString() + "</td>"
-        '        cuerpotabla = cuerpotabla + "</tr>"
-        '    Next
-        '    cuerpotabla = cuerpotabla + "</table>"
-        '    'correo para administrador 
-        '    correo2.From = New MailAddress("chicoharley.teh@gmail.com")
-        '    'Destinatario
-        '    'correo2.[To].Add("blank.glez.12@gmail.com") 'correo del administrador
-        '    correo2.[To].Add("andres.rsa@outlook.com") 'correo del adminsitrador
-        '    correo2.Priority = MailPriority.High
-        '    correo2.Subject = "Reporte de registros"
-        '    correo2.Body = "Reporte de registro para evento: <br>" + cuerpotabla
-        '    correo2.IsBodyHtml = True
-        'End If
-
         Dim correo As New MailMessage()
-        'correo.From = New MailAddress("contactohosting1@gmail.com")
-        'correo.From = New MailAddress("chicoharley.teh@gmail.com")
         correo.From = New MailAddress("chico.harley2024@gmail.com")
         'Destinatario
         correo.[To].Add(boRegistro.Email.Trim)
@@ -253,35 +201,18 @@ Partial Class participantes
         correo.Priority = MailPriority.High
         correo.Subject = "Confirmación de Registro"
         correo.Body = "Usted ha quedado registrado para el evento de Chico Harley con los siguientes datos: <br><br>" + cuerpo
-        'Dim servicio As New SmtpClient()
-        'servicio.Host = "localhost"
         Dim servicio As New SmtpClient
         servicio.Host = "smtp.gmail.com"
         servicio.Port = 587
         servicio.EnableSsl = True
         servicio.UseDefaultCredentials = False
-        'servicio.Credentials = New NetworkCredential("contactohosting1@gmail.com", "M@r1@n1t@")
-        'servicio.Credentials = New NetworkCredential("chicoharley.teh@gmail.com", "chicoh@rley2020")
-        'servicio.Credentials = New NetworkCredential("chicoharley.teh2023@gmail.com", "dkflhqofvxxhviro")
         servicio.Credentials = New NetworkCredential("chico.harley2024@gmail.com", "rfdssdjgtyhevvbc")
 
         Dim respuesta As Boolean = False
         Dim html As AlternateView = AlternateView.CreateAlternateViewFromString("<img src=" + "3.21.129.7/imageMail/header.png" + " alt=""Logo"" /><br />Usted ha quedado registrado para el evento de Chico Harley con los siguientes datos: <br><br>" + cuerpo, System.Text.Encoding.UTF8, "text/html")
-        '  Dim logo As LinkedResource = New LinkedResource(Server.MapPath("Encabezado-imagen.jpg"))
-        ' logo.ContentId = "buayacorp_logo"
-        'html.LinkedResources.Add(logo)
         correo.AlternateViews.Add(html)
-        'Try
         servicio.Send(correo)
-            'If tabla.Rows.Count Mod 20 = 0 Then
-            '    servicio.Send(correo2)
-            '    respuesta = True
-            'Else
-            respuesta = True
-        'End If
-        'Catch ex As Exception
-        '    EnviarCorreo(id)
-        'End Try
+        respuesta = True
         Return respuesta
     End Function
 

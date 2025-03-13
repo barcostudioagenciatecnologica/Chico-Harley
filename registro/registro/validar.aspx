@@ -35,7 +35,7 @@
 <header>
 <div id="header">
 	<div class="logo">
-	<a style="outline:none; text-decoration:none; outline-color:none" href="login.aspx"><img src="img/logo2024.png"></a>
+	<a style="outline:none; text-decoration:none; outline-color:none" href="login.aspx"><img src="img/LOGO2025.png"></a>
 	</div>
 </div>
 </header>
@@ -142,7 +142,7 @@ Tehuacán, Puebla. Casa Club en San Diego Chalma
                     <li style="display:none !important">
                          <a>Términos y condiciones</a>
                     </li>
-                    <li> <a>Copyright 2024 © Chico Harley Tehuacán​</a>
+                    <li> <a>Copyright 2025 © Chico Harley Tehuacán​</a>
 
                     </li>
                    

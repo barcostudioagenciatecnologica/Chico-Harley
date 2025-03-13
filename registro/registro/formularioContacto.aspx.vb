@@ -202,16 +202,10 @@ Partial Class formularioContacto
         servicio.Port = 587
         servicio.EnableSsl = True
         servicio.UseDefaultCredentials = False
-        'servicio.Credentials = New NetworkCredential("contactohosting1@gmail.com", "M@r1@n1t@")
-        'servicio.Credentials = New NetworkCredential("chicoharley.teh@gmail.com", "chicoh@rley2020")
-        'servicio.Credentials = New NetworkCredential("chicoharley.teh2023@gmail.com", "dkflhqofvxxhviro")
         servicio.Credentials = New NetworkCredential("chico.harley2024@gmail.com", "rfdssdjgtyhevvbc")
 
         Dim respuesta As Boolean = False
         Dim html As AlternateView = AlternateView.CreateAlternateViewFromString("<img src=" + "3.21.129.7/imageMail/header.png" + " alt=""Logo"" /><br />Usted ha quedado registrado para el evento de Chico Harley con los siguientes datos: <br><br>" + cuerpo, System.Text.Encoding.UTF8, "text/html")
-        '  Dim logo As LinkedResource = New LinkedResource(Server.MapPath("Encabezado-imagen.jpg"))
-        ' logo.ContentId = "buayacorp_logo"
-        'html.LinkedResources.Add(logo)
         correo.AlternateViews.Add(html)
         Try
             servicio.Send(correo)
