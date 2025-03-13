@@ -525,35 +525,3 @@ Public Enum MaxTallas
     Comida = 280
     Nada = 1000
 End Enum
-
-
-'Public Enum MaxTallasA
-
-'    Small = Cantidad("S")
-'    Medium = Cantidad("M")
-'    Great = Cantidad("G")
-'    Xgreat = Cantidad("XL")
-'    Parche = Cantidad("P")
-
-'End Enum
-
-'Function Cantidad(Talla As String) As Int32
-
-'    Dim cad = New SqlConnection("Data Source=DESKTOP-GD5MVN2;Initial Catalog=adminchhly_ChicoHarley;Integrated Security=SSPI")
-
-'    cad.Open()
-
-'    cad = New SqlCommand("SELECT Talla FROM CH_Material WHERE Cantidad = @Cantidad", SqlCommand)
-
-'    Command.Parameters.AddWithValue("@Cantidad", Talla);
-
-'        var Result = Command.ExecuteScalar();
-
-'        Return (Int())result;
-
-
-'End Function
-
-
-
-
