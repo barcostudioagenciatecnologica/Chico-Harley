@@ -221,7 +221,7 @@ Partial Class formularioContacto
         servicio.Credentials = New NetworkCredential("chico.harley2024@gmail.com", "rfdssdjgtyhevvbc")
 
         Dim respuesta As Boolean = False
-        Dim html As AlternateView = AlternateView.CreateAlternateViewFromString("<img src=" + "3.21.129.7/imageMail/header.png" + " alt=""Logo"" /><br />Usted ha quedado registrado para el evento de Chico Harley con los siguientes datos: <br><br>" + cuerpo, System.Text.Encoding.UTF8, "text/html")
+        Dim html As AlternateView = AlternateView.CreateAlternateViewFromString("<img src=" + "18.220.166.31/imageMail/header.png" + " alt=""Logo"" /><br />Usted ha quedado registrado para el evento de Chico Harley con los siguientes datos: <br><br>" + cuerpo, System.Text.Encoding.UTF8, "text/html")
         correo.AlternateViews.Add(html)
         Try
             servicio.Send(correo)
