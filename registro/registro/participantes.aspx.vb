@@ -72,7 +72,7 @@ Partial Class participantes
             rw1("Celular") = temp.Celular
             rw1("Email") = temp.Email
             rw1("Talla") = temp.Talla
-            rw1("Clave_Registro") = String.Empty
+            rw1("Clave_Registro") = temp.ClaveRegistro
             rw1("Procedencia") = temp.Procedencia
             tablagv.Rows.Add(rw1)
         Next
@@ -173,8 +173,11 @@ Partial Class participantes
 
     Protected Function EnviarCorreo(ByVal id As Integer) As Boolean
         Dim boRegistro As BORegistro = New DalRegistro().ObtenerPorIdRegistro(id)
-        If String.IsNullOrEmpty(boRegistro.ClaveRegistro) Then
-            boRegistro.ClaveRegistro = New DalRegistro().AsignarClavePorUsuario(boRegistro.Id)
+        Dim dalRegistro As New DalRegistro()
+        boRegistro.ClaveRegistro = ""
+        If String.IsNullOrEmpty(boRegistro.ClaveRegistro.Trim()) Then
+            ' Generar una nueva clave solo si ClaveRegistro está vacío
+            boRegistro.ClaveRegistro = dalRegistro.AsignarClavePorUsuario(boRegistro.Id)
         End If
         Dim urlBase As String = Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath
         Dim urlVerificador As String = "validacion.aspx?clave=" + boRegistro.ClaveRegistro
