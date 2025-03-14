@@ -167,7 +167,7 @@ Partial Class entrega
         'correo.Bcc.Add("marceloleon@outlook.com")
         correo.Priority = MailPriority.High
         correo.Subject = "Confirmación de Registro"
-        correo.Body = "Usted ha quedado registrado para el evento de Chico Harley con los siguientes datos: <br><br>" + cuerpo
+        correo.Body = cuerpo
         'Dim servicio As New SmtpClient()
         'servicio.Host = "localhost"
         Dim servicio As New SmtpClient

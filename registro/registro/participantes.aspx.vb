@@ -142,7 +142,7 @@ Partial Class participantes
             If claveGenerada Then
                 ' Generar la clave y enviar el correo
                 EnviarCorreo(idRegistro)
-                Response.Write("<script>alert('Clave generada correctamente.');</script>")
+                Response.Write("<script>alert('Clave generada correctamente y correo enviado.');</script>")
                 ' Deshabilitar el botón después de generar la clave
                 boton.Enabled = False
             Else
@@ -185,7 +185,7 @@ Partial Class participantes
         Dim cuerpo As String = String.Empty
         Dim folio As String = New DalRegistro().AsignarFolioPorUsuario(boRegistro.Id, boRegistro.ClaveRegistro)
         cuerpo = cuerpo + "<strong>Usted ha quedado registrado para el evento de Chico Harley con los siguientes datos: </strong><br>" + "<br>"
-        cuerpo = cuerpo + "<strong>Se entregará el material tales como: playeras y parches dependiendo del stock disponible en el evento </strong><br>"
+        cuerpo = cuerpo + "<strong>Se entregará materiales tales como: playeras y parches dependiendo del stock disponible en el evento </strong><br>"
         cuerpo = cuerpo + "<strong>Folio: </strong><FONT SIZE=25>" + folio + "</font><br>"
         cuerpo = cuerpo + "<strong>Nombre: </strong>" + boRegistro.NombrePiloto.ToUpper() + "<br>"
         cuerpo = cuerpo + "<strong>Nombre Copiloto: </strong>" + boRegistro.NombreCop.ToUpper() + "<br>"
