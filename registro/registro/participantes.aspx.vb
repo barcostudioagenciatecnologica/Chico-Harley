@@ -139,7 +139,7 @@ Partial Class participantes
             Dim idRegistro As Integer = CInt(boton.CommandArgument)
             ' Verificar si ya se ha generado una clave para este registro
             Dim claveGenerada As Boolean = VerificarClaveGenerada(idRegistro)
-            If Not claveGenerada Then
+            If claveGenerada Then
                 ' Generar la clave y enviar el correo
                 EnviarCorreo(idRegistro)
                 Response.Write("<script>alert('Clave generada correctamente.');</script>")

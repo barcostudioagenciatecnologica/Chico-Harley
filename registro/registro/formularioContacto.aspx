@@ -93,12 +93,6 @@
 	
 	<center>
 	<div class="letra">
-	<%--	<p class="titulo">
-			Favor de agregar este correo a tu lista segura.
-		</p>
-		<div style="width:100%; max-width:900px; background-color:#ec5b00; height:2px">
-		</div>--%>
-		
 		<form  id="contactForm" runat="server" method="post" novalidate >
 
 		<div class="row">
@@ -220,26 +214,11 @@
                 </div>
 
                 <div class="col-sm-12">
-<%--                    <asp:RadioButton ID="rbPlayera" runat="server" Text="Playera" Checked="True"></asp:RadioButton>
-                    <asp:RadioButton ID="rbParche" runat="server" Text="Parche"></asp:RadioButton>--%>
-                    <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" ForeColor="White">
+					<asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" ForeColor="White">
                         <asp:ListItem Selected="True" OnSelectedIndexChanged="radioButtons_SelectedIndexChanged" style="color:#000;  font-family: 'typewriter_condensedregular';"> &nbsp;&nbsp;&nbsp; Recuerdos</asp:ListItem>
-
-<%--                        <asp:ListItem style="color:#000;  font-family: 'typewriter_condensedregular'; margin-left:20px" OnSelectedIndexChanged="radioButtons_SelectedIndexChanged" onclick="myFunction()">&nbsp;&nbsp;&nbsp; Parche</asp:ListItem>--%>
-                    </asp:RadioButtonList>
+              </asp:RadioButtonList>
                 </div>
 
-				<%--<script>
-                    function myFunction() {
-                        var x = document.getElementById("myDIV");
-                        if (x.style.display === "none") {
-                            x.style.display = "none";
-                        } else {
-                            x.style.display = "none";
-                        }
-                    }
-                    id = "myDIV"
-                </script>--%>
 
 				<div  class="col-sm-12">
                        <asp:DropDownList runat="server" id="ddlTalla" name="nombre" class="form-control1" required="">
@@ -273,7 +252,7 @@ Cualquier duda favor de comunicarse al 2383890085 o bien escribir al correo elec
 
 				<div class="col-sm-6" style="text-align:center">
                     
-					<asp:button PostBackUrl="http://3.21.129.7/Default.aspx" runat="server" ID="btnNuevo" Text="NUEVO REGISTRO" CssClass="button9"  />
+					<asp:button PostBackUrl="../Default.aspx" runat="server" ID="btnNuevo" Text="NUEVO REGISTRO" CssClass="button9"  />
                         
 				</div>
 			</div>

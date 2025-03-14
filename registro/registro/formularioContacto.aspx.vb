@@ -28,28 +28,47 @@ Partial Class formularioContacto
     Protected Sub btnRegistrate_Click(sender As Object, e As EventArgs) Handles btnRegistrate.Click
 
         Dim boRegistro As New BORegistro()
-
+        Dim valido As Boolean = True
+        Select Case txtLugar.Text.ToLower().Trim()
+            Case "ajalpan"
+                valido = False
+            Case "tehuacán"
+                valido = False
+            Case "tehuacan"
+                valido = False
+            Case "coapan"
+                valido = False
+            Case "santa maria coapan"
+                valido = False
+            Case "miahuatlan"
+                valido = False
+            Case "santiago miahuatlan"
+                valido = False
+        End Select
+        Select Case txtEstado.Text.ToLower().Trim()
+            Case "ajalpan"
+                valido = False
+            Case "tehuacán"
+                valido = False
+            Case "tehuacan"
+                valido = False
+            Case "coapan"
+                valido = False
+            Case "santa maria coapan"
+                valido = False
+            Case "miahuatlan"
+                valido = False
+            Case "santiago miahuatlan"
+                valido = False
+        End Select
+        If valido = False Then
+            Response.Write("<script>alert('Para la inscripción debe ponerse en contacto al número 2381505344 con Blanca González Solis');</script>")
+            Exit Sub
+        End If
         ' Verificar si el correo ya está registrado
         If ExisteDatoPreviamente(txtEmail.Text.ToLower().Trim(), ValoresUnicos.Email) Then
             ' Si el correo ya está registrado, asigna una cadena vacía a ClaveRegistro
             boRegistro.ClaveRegistro = ""
-        End If
-
-        If txtLugar.Text.Trim.ToLower = "ajalpan" Or txtEstado.Text.Trim.ToLower = "ajalpan" Then
-            Response.Write("<script>alert('Para la inscripción debe ponerse en contacto al número 2381505344 con Blanca González Solis');</script>")
-            Exit Sub
-        End If
-        If txtLugar.Text.Trim.ToLower = "tehuacán" Or txtEstado.Text.Trim.ToLower = "tehuacán" Or txtLugar.Text.Trim.ToLower = "tehuacan" Or txtEstado.Text.Trim.ToLower = "tehuacan" Then
-            Response.Write("<script>alert('Para la inscripción debe ponerse en contacto al número 2381505344 con Blanca González Solis');</script>")
-            Exit Sub
-        End If
-        If txtLugar.Text.Trim.ToLower = "coapan" Or txtEstado.Text.Trim.ToLower = "coapan" Or txtLugar.Text.Trim.ToLower = "santa maria coapan" Or txtEstado.Text.Trim.ToLower = "santa maria coapan" Then
-            Response.Write("<script>alert('Para la inscripción debe ponerse en contacto al número 2381505344 con Blanca González Solis');</script>")
-            Exit Sub
-        End If
-        If txtLugar.Text.Trim.ToLower = "miahuatlan " Or txtEstado.Text.Trim.ToLower = "miahuatlan" Or txtLugar.Text.Trim.ToLower = "santiago miahuatlan" Or txtEstado.Text.Trim.ToLower = "santiago miahuatlan" Then
-            Response.Write("<script>alert('Para la inscripción debe ponerse en contacto al número 2381505344 con Blanca González Solis');</script>")
-            Exit Sub
         End If
 
         ' Verificar si el teléfono tiene la lada "238"
@@ -72,9 +91,6 @@ Partial Class formularioContacto
                 End If
                 If ExisteDatoPreviamente(txtEmail.Text.ToLower().Trim(), ValoresUnicos.Email) = False Then
                     If ExisteDatoPreviamente(txtVin.Text.ToLower().Trim(), ValoresUnicos.Vin) = False Then
-
-
-
 
                         Select Case ddlTalla.SelectedValue
                             'Case "S" : Dim s As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("S")
@@ -140,8 +156,8 @@ Partial Class formularioContacto
                             Exit Sub
                         End If
                         If GuardarInformacion() Then
-                            Dim idRegistro As Integer = objRegistro.ObtenerIDporCorreo(txtEmail.Text)
-                            EnviarCorreo(idRegistro)
+                            'Dim idRegistro As Integer = objRegistro.ObtenerIDporCorreo(txtEmail.Text)
+                            'EnviarCorreo(idRegistro)
                             ClearControls()
                             Response.Write("<script>alert('Registro realizado correctamente.');</script>")
                         Else
