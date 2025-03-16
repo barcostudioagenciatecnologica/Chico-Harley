@@ -137,26 +137,38 @@ Partial Class participantes
         Dim boton As Button = TryCast(sender, Button)
         If boton IsNot Nothing Then
             Dim idRegistro As Integer = CInt(boton.CommandArgument)
+
             ' Verificar si ya se ha generado una clave para este registro
             Dim claveGenerada As Boolean = VerificarClaveGenerada(idRegistro)
-            If claveGenerada Then
+
+            If Not claveGenerada Then ' Si no tiene clave generada
                 ' Generar la clave y enviar el correo
                 EnviarCorreo(idRegistro)
                 Response.Write("<script>alert('Clave generada correctamente y correo enviado.');</script>")
-                ' Deshabilitar el botón después de generar la clave
+
                 boton.Enabled = False
             Else
-                ' Si la clave ya ha sido generada, mostrar un mensaje o realizar alguna acción
+
                 Response.Write("<script>alert('La clave para este registro ya ha sido generada.');</script>")
             End If
+
             btnBuscar_Click(Nothing, Nothing)
         End If
     End Sub
 
     Public Function VerificarClaveGenerada(idRegistro As Integer) As Boolean
+        ' Obtener el registro por ID
         Dim objBoRegistro As BORegistro = _dalRegistro.ObtenerPorIdRegistro(idRegistro)
-        ' Comprobar si el registro tiene una clave asignada
-        Return Not String.IsNullOrEmpty(objBoRegistro.ClaveRegistro)
+
+        ' Comprobar si ClaveRegistro o Folio son nulos o vacíos, o sólo contienen espacios
+        If (String.IsNullOrEmpty(objBoRegistro.ClaveRegistro) OrElse String.IsNullOrEmpty(objBoRegistro.ClaveRegistro.Trim())) AndAlso
+       (String.IsNullOrEmpty(objBoRegistro.Folio) OrElse String.IsNullOrEmpty(objBoRegistro.Folio.Trim())) Then
+            ' Si ambos están vacíos o sólo contienen espacios
+            Return False
+        Else
+            ' Si cualquiera de los dos tiene valor (no es vacío ni sólo espacios)
+            Return True
+        End If
     End Function
 
 
