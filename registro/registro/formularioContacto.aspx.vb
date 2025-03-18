@@ -32,10 +32,10 @@ Partial Class formularioContacto
         Select Case txtLugar.Text.ToLower().Trim()
             Case "ajalpan"
                 valido = False
-            Case "tehuacán"
-                valido = False
-            Case "tehuacan"
-                valido = False
+            'Case "tehuacán"
+            '    valido = False
+            'Case "tehuacan"
+            '    valido = False
             Case "coapan"
                 valido = False
             Case "santa maria coapan"
@@ -48,10 +48,10 @@ Partial Class formularioContacto
         Select Case txtEstado.Text.ToLower().Trim()
             Case "ajalpan"
                 valido = False
-            Case "tehuacán"
-                valido = False
-            Case "tehuacan"
-                valido = False
+            'Case "tehuacán"
+            '    valido = False
+            'Case "tehuacan"
+            '    valido = False
             Case "coapan"
                 valido = False
             Case "santa maria coapan"

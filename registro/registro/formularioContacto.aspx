@@ -209,7 +209,7 @@
 
 
 
-            <div class="row">
+            <div class="row"  id="divRecuerdos">
                 	<div class="col-sm-12">
             			<label>Selecciona tu Recuerdo:</label>
                 </div>
@@ -387,7 +387,7 @@ window.addEventListener("scroll", function(){
 }, false);
 
 
-
+        //////// Ocultar la parte de seleccionar si ponen Independiente en nombre del motoclub
 
         document.addEventListener("DOMContentLoaded", function () {
             var txtMotoclub = document.getElementById('<%= txtNombreMotoclub.ClientID %>');
@@ -417,6 +417,36 @@ window.addEventListener("scroll", function(){
             });
         });
 
+
+
+        //// Para ocultar la parte de Recuerdos si son de Tehuacan y asignarles Parche 
+        
+        document.addEventListener("DOMContentLoaded", function () {
+            var txtLugar = document.getElementById('<%= txtLugar.ClientID %>');
+            var txtEstado = document.getElementById('<%= txtEstado.ClientID %>');
+            var divRecuerdos = document.getElementById('divRecuerdos'); // Contenedor de la sección de recuerdos
+            var ddlTalla = document.getElementById('<%= ddlTalla.ClientID %>'); // Dropdown de recuerdos
+
+            function normalizarTexto(texto) {
+                return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            }
+
+            function verificarTehuacan() {
+                var ciudad = normalizarTexto(txtLugar.value.trim());
+                var estado = normalizarTexto(txtEstado.value.trim());
+
+                if (ciudad === "tehuacan" || estado === "tehuacan") {
+                    divRecuerdos.style.display = "none"; // Oculta la sección de recuerdos
+                    ddlTalla.value = "P"; // Selecciona "Patch (P)" en el dropdown
+                } else {
+                    divRecuerdos.style.display = "block"; // Muestra la sección de recuerdos
+                }
+            }
+
+            // Detectar cambios en los inputs
+            txtLugar.addEventListener("input", verificarTehuacan);
+            txtEstado.addEventListener("input", verificarTehuacan);
+        });
 
     </script>
 
