@@ -15,6 +15,15 @@
    <link href="saelicbold/stylesheet.css" rel="stylesheet" type="text/css">
     <link href="medium/stylesheet.css" rel="stylesheet" type="text/css">
     <link href="css/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <style>
+        /* Cambiar la fuente a Arial o la fuente predeterminada */
+        .fuentena2, .fuentena3 {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #000000;
+        }
+    </style>
     <!--favicon-->
 <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
@@ -95,10 +104,10 @@
 <div class="tabla1">
 	<div class="letra">
 		<p class="fuentena3">
-			<b>Amigo motociclista, a través de este formulario agilizas tu proceso de inscripción y a su vez aseguras tú KIT DE BIENVENIDA, 
+			<b>Amigo motociclista, a través de este formulario agilizas tu proceso de inscripción y a su vez aseguras tu RECUERDO DE BIENVENIDA, 
                 queremos agradecer de antemano su entusiasmo y asistencia, debido a ello ha aumentado el número de participantes. 
                 Pensando en que la gran mayoría pueda obtener un recuerdo de esta convivencia hemos agregado un campo más a la lista de registro, 
-                en el cuál ustedes podrán elegir entre playera o parche conmemorativo.
+                en el cuál ustedes podrán elegir entre playera O parche conmemorativo.
             </b>
 		</p>
         <p class="fuentena2">
@@ -106,22 +115,22 @@
 		</p>
 
         <p class="fuentena2">
-			Las instrucciones para tener un pre-registro exitoso, son las siguientes:
+			Las instrucciones para tener un pre-registro exitoso son las siguientes:
 		</p>
 		<p class="fuentena2">
-			1.- En la campo <b >NOMBRE o APELLIDOS </b> está divida en <b >PILOTO y COPILOTO</b>. Cada casilla deberá ser llenada con sus nombres completos respectivamente. En caso de <b>NO TENER COPILOTO</b>, favor de dejar en blanco la casilla, el repetir el nombre te bloqueará el sistema y podrás intentar el registro hasta el día siguiente.
+			1.- En la campo <b>NOMBRE-APELLIDOS</b> está divida en <b >PILOTO y COPILOTO</b>. Cada casilla deberá ser llenada con sus nombres completos respectivamente. En caso de <b>NO TENER COPILOTO</b>, favor de dejar en  <b>BLANCO</b> la casilla, el repetir el nombre te bloqueará el sistema y podrás intentar el registro hasta el día siguiente.
 		</p>
 		<p class="fuentena2">
-			2.- El campo <b>PROCEDENCIA</b>, deberás anotar <b >la CIUDAD y el ESTADO</b> del que nos acompañas en las casillas correspondientes.
+			2.- El campo <b>PROCEDENCIA</b>, deberás anotar la <b >CIUDAD</b> y el <b >ESTADO  </b> del que nos acompañas en las casillas correspondientes.
 		</p>
 		<p class="fuentena2">
 			3.- El campo <b>TELEFONO</b>, puedes poner un número fijo o bien tu número de celular, ambos a 10 dígitos. Esto con el fin de contar con un número de contacto en caso de ser necesario.
 		</p>
 		<p class="fuentena2">
-			4.- <b>CORREO ELECTRÓNICO</b>, en este campo debes anotar <b>CORRECTAMENTE</b> un correo electrónico de contacto. Es de <b>VITAL IMPORTANCIA</b> que escribas correctamente tu correo, ya que a través de este medio se te hará llegar tu <b >CLAVE DE CONFIRMACIÓN</b>, sin esta clave aún hayas llenado el formulario no podrás asegurar la inscripción.
+			4.- <b>CORREO ELECTRÓNICO</b>, en este campo debes anotar <b>CORRECTAMENTE</b> un correo electrónico de contacto (DE PREFERENCIA DE GMAIL Y QUE NO SEA INSTITUCIONAL YA QUE TIENE MÁS RESTRICCIONES PARA RECIBIR CORREOS EXTERNOS). Es de <b>VITAL IMPORTANCIA</b> que escribas correctamente tu correo, ya que a través de este medio se te hará llegar tu <b >CLAVE DE CONFIRMACIÓN</b>, sin esta clave aún hayas llenado el formulario no podrás asegurar la inscripción.
 		</p>
         <p class="fuentena2">
-			5.- Si perteneces a un Motoclub, escribe el nombre del mismo y de ser así, confirma en la casilla siguiente si eres miembro o líder. En caso de ser motociclista independiente deberás escribir <b >INDEPENDIENTE</b>.
+			5.- Si perteneces a un Motoclub, escribe el nombre del mismo y de ser así, confirma en la casilla siguiente si eres  <b>MIEMBRO</b> o  <b>LIDER</b>. En caso de ser motociclista independiente deberás escribir <b >INDEPENDIENTE</b>.
 		</p>
          <p class="fuentena2">
 			6.- En el campo <b>MOTOCICLETA</b> debes anotar los datos de tu unidad de la siguiente forma:
@@ -141,7 +150,7 @@
 			7.- &nbsp;<b class="fuentena3">NÚMERO DE SERIE O VIN</b>, este campo se solicita para tratar de asegurar que los interesados en participar en el evento sean motociclistas. La información se maneja con absoluta <b class="fuentena3">SERIEDAD y UNICAMENTE</b> por los organizadores. El número de serie lo pueden encontrar en la tarjeta de circulación de su unidad.
 		</p>
             <p class="fuentena2">
-			8.- &nbsp;<b class="fuentena3">TALLA DE PLAYERA</b>, este campo es de opción múltiple y nos permite controlar las tallas de las playeras del kit. Como se mencionó el número es limitado, si al momento de llenar el formulario ya no alcanzas la talla deseada, selecciona la más próxima.
+			8.- &nbsp;<b class="fuentena3">TALLA DE PLAYERA</b>, este campo es de opción múltiple y permite elegir <b>UNA SÓLA</b> opción de recuerdo del evento. Si al momento de llenar el formulario ya no alcanzas la talla deseada, selecciona la más próxima. Aparecen las opciones <b>COMIDA</b> y <b>ACCESO AL EVENTO</b>, estas <b>ÚNICAMENTE</b> se deben seleccionar si ya no hay opción de <b>RECUERDO</b> (parche o playera) disponibles. Si eres afortunado acreedor al recuerdo en <b>AUTOMÁTICO</b> tienes acceso  <b>TOTAL AL EVENTO</b> (INCLUYENDO LA COMIDA).
 		</p>
         <br /><br />
         <form runat="server">
@@ -151,8 +160,11 @@
 	<%--	<a href="formularioContacto.aspx">	 <asp:TextBox runat="server"  type="button" class="button" name="submit"   id="txtboton" value="SIGUIENTE" ></asp:TextBox></a>--%>
 
           
-<div class="sim-button button8">  <a class="ab" href="formularioContacto.aspx"><span>SIGUIENTE</span></a></div>
+        <div class="sim-button button8">  <a class="ab" href="javascript:void(0);" id="btnSiguiente"><span>SIGUIENTE</span></a></div>
 
+            <div id="mensajeAdvertencia" style="color: red; display: none;">
+            Acepta primero las condiciones.
+        </div>
 
             </div></form>
 
@@ -278,7 +290,34 @@ window.addEventListener("scroll", function(){
    }
    lastScrollTop = st;
 }, false);
-    </script>
+
+
+
+
+
+      // Función para verificar si el checkbox está marcado
+            document.addEventListener('DOMContentLoaded', function () {
+                var btnSiguiente = document.getElementById('btnSiguiente');
+                var checkbox = document.getElementById('<%= checkbox.ClientID %>');
+                var mensajeAdvertencia = document.getElementById('mensajeAdvertencia');
+
+                // Verifica si el botón "Siguiente" existe
+                if (btnSiguiente) {
+                    btnSiguiente.addEventListener('click', function (event) {
+                        // Verifica si el checkbox está marcado
+                        if (!checkbox.checked) {
+                            // Si no está marcado, muestra el mensaje de advertencia
+                            mensajeAdvertencia.style.display = 'block';
+                        } else {
+                            // Si está marcado, redirige a la siguiente página
+                            window.location.href = "formularioContacto.aspx";
+                        }
+                    });
+                }
+            });
+
+
+        </script>
 
 <script src="js/menu/jquery.min.js" type="text/javascript"></script>
 <script src="js/menu/bootstrap.min.js" type="text/javascript"></script>

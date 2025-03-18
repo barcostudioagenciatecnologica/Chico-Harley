@@ -374,7 +374,7 @@ Partial Class formularioContacto
                    .NoSerieVin = txtVin.Text.ToLower().Trim(),
                    .Procedencia = txtLugar.Text.ToLower().Trim() + ", " + txtEstado.Text.ToLower().Trim(),
                    .Talla = "NA",
-                   .Lider = IIf(cboPosicion.Text = "Lider", True, False)
+                   .Lider = Convert.ToBoolean(Request.Form("Lider"))
                }
         If ddlTalla.SelectedValue <> "Z" Then
             obj.Talla = ddlTalla.SelectedValue
@@ -494,9 +494,9 @@ Partial Class formularioContacto
 
 #End Region
 
-    Protected Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
+    'Protected Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
 
-    End Sub
+    'End Sub
     'Protected Sub rbPlayera_CheckedChanged(sender As Object, e As EventArgs) Handles rbPlayera.CheckedChanged
     '    ddlTalla.Enabled = True
     '    rbParche.Checked = False

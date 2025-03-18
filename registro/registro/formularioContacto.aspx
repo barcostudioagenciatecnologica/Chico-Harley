@@ -174,6 +174,7 @@
                        <asp:ListItem>Líder</asp:ListItem>
                         <asp:ListItem>Miembro</asp:ListItem>
                </asp:DropDownList>
+                    <input type="hidden" id="Lider" name="Lider" value="false">
 				</div>
 			</div>
 
@@ -235,7 +236,7 @@
 			<br>
 			<p class="texto">
 		El número de participación es único e intransferible, favor de tomar muy en cuenta estos requisitos.
-Cualquier duda favor de comunicarse al 2383890085 o bien escribir al correo electrónico:<strong class="correo"> <a href="mailto:chicoharley.teh@hotmail.com">chicoharley.teh@hotmail.com</a></strong>	
+Cualquier duda favor de comunicarse al 2381505344 o bien escribir al correo electrónico:<strong class="correo"> <a href="mailto:chicoharley.teh@hotmail.com">chicoharley.teh@hotmail.com</a></strong>	
 			</p>
 			<br>
 			<br>
@@ -243,18 +244,18 @@ Cualquier duda favor de comunicarse al 2383890085 o bien escribir al correo elec
 			<div class="row" style="text-align:center; position:relative; margin:0 auto; width:100%; max-width:1920px  ; float:inherit;">
 				
                 
-                <div class="col-sm-6 " style="text-align:center">
+                <div style="display: flex; justify-content: center;">
 				
-                    <asp:button runat="server" ID="btnRegistrate" Text="REGISTRATE" type="submit" CssClass="button8" />
+                    <asp:button runat="server" ID="btnRegistrate" Text="REGISTRATE" type="submit" CssClass="button8" style="width: auto;"/>
                       
 				</div>
 
 
-				<div class="col-sm-6" style="text-align:center">
+				<%--<div class="col-sm-6" style="text-align:center">
                     
 					<asp:button PostBackUrl="../Default.aspx" runat="server" ID="btnNuevo" Text="NUEVO REGISTRO" CssClass="button9"  />
                         
-				</div>
+				</div>--%>
 			</div>
 			</center>
 			
@@ -384,6 +385,39 @@ window.addEventListener("scroll", function(){
    }
    lastScrollTop = st;
 }, false);
+
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var txtMotoclub = document.getElementById('<%= txtNombreMotoclub.ClientID %>');
+            var cboPosicion = document.getElementById('<%= cboPosicion.ClientID %>');
+            var inputLider = document.getElementById('Lider'); // Campo oculto 'Lider'
+
+            if (txtMotoclub.value.trim().toLowerCase() === "independiente") {
+                cboPosicion.style.display = "none";
+                cboPosicion.value = "Miembro"; 
+                inputLider.value = "false"; 
+            }
+
+            txtMotoclub.addEventListener("input", function (event) {
+                event.preventDefault();
+                if (txtMotoclub.value.trim().toLowerCase() === "independiente") {
+                    cboPosicion.style.display = "none"; 
+                    cboPosicion.value = "Miembro"; 
+                    inputLider.value = "false"; 
+                } else {
+                    cboPosicion.style.display = "block"; 
+                    inputLider.value = (cboPosicion.value === "Líder") ? "true" : "false";
+                }
+            });
+
+            txtMotoclub.addEventListener("blur", function (event) {
+                event.preventDefault();  
+            });
+        });
+
+
     </script>
 
 <script src="js/menu/jquery.min.js" type="text/javascript"></script>
