@@ -424,18 +424,21 @@ window.addEventListener("scroll", function(){
         document.addEventListener("DOMContentLoaded", function () {
             var txtLugar = document.getElementById('<%= txtLugar.ClientID %>');
             var txtEstado = document.getElementById('<%= txtEstado.ClientID %>');
-            var divRecuerdos = document.getElementById('divRecuerdos'); // Contenedor de la sección de recuerdos
-            var ddlTalla = document.getElementById('<%= ddlTalla.ClientID %>'); // Dropdown de recuerdos
+            var divRecuerdos = document.getElementById('divRecuerdos'); 
+            var ddlTalla = document.getElementById('<%= ddlTalla.ClientID %>'); 
 
             function normalizarTexto(texto) {
                 return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
             }
 
-            function verificarTehuacan() {
+            function verificarCiudades() {
                 var ciudad = normalizarTexto(txtLugar.value.trim());
                 var estado = normalizarTexto(txtEstado.value.trim());
 
-                if (ciudad === "tehuacan" || estado === "tehuacan") {
+                // Lista de ciudades que deben ocultar la sección de recuerdos
+                var ciudadesBloqueadas = ["tehuacan", "santa maria coapan", "miahuatlan", "ajalpan"];
+
+                if (ciudadesBloqueadas.includes(ciudad) || ciudadesBloqueadas.includes(estado)) {
                     divRecuerdos.style.display = "none"; // Oculta la sección de recuerdos
                     ddlTalla.value = "P"; // Selecciona "Patch (P)" en el dropdown
                 } else {
@@ -444,8 +447,8 @@ window.addEventListener("scroll", function(){
             }
 
             // Detectar cambios en los inputs
-            txtLugar.addEventListener("input", verificarTehuacan);
-            txtEstado.addEventListener("input", verificarTehuacan);
+            txtLugar.addEventListener("input", verificarCiudades);
+            txtEstado.addEventListener("input", verificarCiudades);
         });
 
     </script>

@@ -29,42 +29,42 @@ Partial Class formularioContacto
 
         Dim boRegistro As New BORegistro()
         Dim valido As Boolean = True
-        Select Case txtLugar.Text.ToLower().Trim()
-            Case "ajalpan"
-                valido = False
-            'Case "tehuacán"
-            '    valido = False
-            'Case "tehuacan"
-            '    valido = False
-            Case "coapan"
-                valido = False
-            Case "santa maria coapan"
-                valido = False
-            Case "miahuatlan"
-                valido = False
-            Case "santiago miahuatlan"
-                valido = False
-        End Select
-        Select Case txtEstado.Text.ToLower().Trim()
-            Case "ajalpan"
-                valido = False
-            'Case "tehuacán"
-            '    valido = False
-            'Case "tehuacan"
-            '    valido = False
-            Case "coapan"
-                valido = False
-            Case "santa maria coapan"
-                valido = False
-            Case "miahuatlan"
-                valido = False
-            Case "santiago miahuatlan"
-                valido = False
-        End Select
-        If valido = False Then
-            Response.Write("<script>alert('Para la inscripción debe ponerse en contacto al número 2381505344 con Blanca González Solis');</script>")
-            Exit Sub
-        End If
+        'Select Case txtLugar.Text.ToLower().Trim()
+        '    Case "ajalpan"
+        '        valido = False
+        '    'Case "tehuacán"
+        '    '    valido = False
+        '    'Case "tehuacan"
+        '    '    valido = False
+        '    Case "coapan"
+        '        valido = False
+        '    Case "santa maria coapan"
+        '        valido = False
+        '    Case "miahuatlan"
+        '        valido = False
+        '    Case "santiago miahuatlan"
+        '        valido = False
+        'End Select
+        'Select Case txtEstado.Text.ToLower().Trim()
+        '    Case "ajalpan"
+        'valido = False
+        'Case "tehuacán"
+        '    valido = False
+        'Case "tehuacan"
+        '    valido = False
+        '    Case "coapan"
+        '        valido = False
+        '    Case "santa maria coapan"
+        '        valido = False
+        '    Case "miahuatlan"
+        '        valido = False
+        '    Case "santiago miahuatlan"
+        '        valido = False
+        'End Select
+        'If valido = False Then
+        '    Response.Write("<script>alert('Para la inscripción debe ponerse en contacto al número 2381505344 con Blanca González Solis');</script>")
+        '    Exit Sub
+        'End If
         ' Verificar si el correo ya está registrado
         If ExisteDatoPreviamente(txtEmail.Text.ToLower().Trim(), ValoresUnicos.Email) Then
             ' Si el correo ya está registrado, asigna una cadena vacía a ClaveRegistro
@@ -72,10 +72,10 @@ Partial Class formularioContacto
         End If
 
         ' Verificar si el teléfono tiene la lada "238"
-        If txtCelular1.Text.Trim().StartsWith("238") Then
-            Response.Write("<script>alert('Para la inscripción con ese teléfono debe ponerse en contacto al número 2381505344 con Blanca González Solis');</script>")
-            Exit Sub
-        End If
+        'If txtCelular1.Text.Trim().StartsWith("238") Then
+        '    Response.Write("<script>alert('Para la inscripción con ese teléfono debe ponerse en contacto al número 2381505344 con Blanca González Solis');</script>")
+        '    Exit Sub
+        'End If
 
         If ExisteDatoPreviamente(txtNombre.Text.ToLower().Trim() + "," + txtApellido.Text.ToLower().Trim() + "," + txtNombreCopiloto.Text.ToLower().Trim() + "," + txtCopilotoApellido.Text.ToLower().Trim(), ValoresUnicos.Nombres) = True Then
             Response.Write("<script>alert('Usuario ya registrado.');</script>")
