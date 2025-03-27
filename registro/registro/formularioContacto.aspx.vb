@@ -17,6 +17,7 @@ Partial Class formularioContacto
 
         If Not IsPostBack Then
             ValidarDisponibilidadComida()
+            GenerarStockTallasJS()
         End If
     End Sub
 
@@ -36,6 +37,27 @@ Partial Class formularioContacto
 
     End Sub
 
+    Private Sub GenerarStockTallasJS()
+        Dim stockTallas As New Dictionary(Of String, Integer)
+        Dim jsonSerializer As New System.Web.Script.Serialization.JavaScriptSerializer()
+
+        ' Recorremos las opciones del DropDownList para obtener stock de cada talla
+        For Each item As ListItem In ddlTalla.Items
+            stockTallas(item.Value) = ValidarStockTalla(item.Value)
+        Next
+
+        ' Convertimos a JSON
+        Dim stockTallasJson As String = jsonSerializer.Serialize(stockTallas)
+
+        ' Insertamos el JSON en la página
+        Dim script As String = "var stockTallas = " & stockTallasJson & ";"
+        ClientScript.RegisterStartupScript(Me.GetType(), "StockTallasScript", script, True)
+    End Sub
+
+    Protected Function ValidarStockTalla(talla As String) As Integer
+        Dim dal As New DalRegistro()
+        Return dal.ObtenerTallaPY(talla) ' Llama al método que ya tienes en DalRegistro
+    End Function
 
 #End Region
 

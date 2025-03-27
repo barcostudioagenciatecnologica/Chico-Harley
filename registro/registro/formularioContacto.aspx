@@ -439,11 +439,16 @@ window.addEventListener("scroll", function(){
         });
 
 
+
+
+
+
+
         //// Mostrar solo Parcht y Acceso al evento en Recuerdoss si son de Tehuacan y asignarles Parche 
         document.addEventListener("DOMContentLoaded", function () {
             var txtLugar = document.getElementById('<%= txtLugar.ClientID %>');
             var txtEstado = document.getElementById('<%= txtEstado.ClientID %>');
-            var divRecuerdos = document.getElementById('divRecuerdos'); 
+            var divRecuerdos = document.getElementById('divRecuerdos');
             var ddlTalla = document.getElementById('<%= ddlTalla.ClientID %>');
 
             function normalizarTexto(texto) {
@@ -451,28 +456,24 @@ window.addEventListener("scroll", function(){
             }
 
             function quitarEspacios(texto) {
-                return texto.replace(/\s+/g, ''); // Elimina todos los espacios
+                return texto.replace(/\s+/g, '');
             }
 
             function verificarCiudades() {
                 var ciudad = normalizarTexto(txtLugar.value.trim());
                 var estado = normalizarTexto(txtEstado.value.trim());
 
-                // Convertimos en listas de palabras individuales
                 var palabrasCiudad = ciudad.split(/\s+/);
                 var palabrasEstado = estado.split(/\s+/);
 
-                // Lista de ciudades bloqueadas
                 var ciudadesBloqueadas = [
                     "tehuacan", "santa maria coapan", "miahuatlan", "ajalpan", "tepanco de lopez",
                     "nicolas bravo", "vicente guerrero", "san antonio cañada", "altepexi",
                     "san gabriel chilac", "zapotitlan", "atexcal"
                 ];
 
-                // Normalizar y eliminar espacios de la lista de ciudades bloqueadas
                 var ciudadesBloqueadasNormalizadas = ciudadesBloqueadas.map(ciudad => quitarEspacios(normalizarTexto(ciudad)));
 
-                // Verificar si alguna palabra del input está en la lista de ciudades bloqueadas
                 var ciudadCoincide = palabrasCiudad.some(palabra =>
                     ciudadesBloqueadasNormalizadas.some(ciudadBloqueada => ciudadBloqueada.includes(palabra))
                 );
@@ -481,36 +482,81 @@ window.addEventListener("scroll", function(){
                     ciudadesBloqueadasNormalizadas.some(ciudadBloqueada => ciudadBloqueada.includes(palabra))
                 );
 
+                // **Primer caso: Ciudad o estado está bloqueado**
                 if (ciudadCoincide || estadoCoincide) {
-                    // Mostrar todas las opciones, incluyendo "PatchLocal"
-                    divRecuerdos.style.display = "block"; // Asegura que la sección de recuerdos se muestre siempre
+                    divRecuerdos.style.display = "block";
 
-                    // Mostrar "PatchLocal" y "Acceso al evento" en el select
+                    var patchDisponible = false;
+                    var accesoDisponible = false;
+
                     for (var i = 0; i < ddlTalla.options.length; i++) {
                         var option = ddlTalla.options[i];
-                        if (option.value !== "PatchLocal" && option.value !== "Acceso al evento") {
-                            option.style.display = "none"; // Ocultar otras opciones
-                        } else {
-                            option.style.display = "block"; // Mostrar "PatchLocal" y "Acceso al evento"
+
+                        if (option.value === "PatchLocal") {
+                            patchDisponible = true;
+                        }
+                        if (option.value === "Acceso al evento") {
+                            accesoDisponible = true;
                         }
                     }
-                } else {
-                    // Mostrar todas las opciones, menos "PatchLocal"
+
+                    if (patchDisponible && stockTallas["PatchLocal"] > 0) {
+                        for (var i = 0; i < ddlTalla.options.length; i++) {
+                            var option = ddlTalla.options[i];
+                            option.style.display = (option.value === "PatchLocal") ? "block" : "none";
+                        }
+                    } else if (accesoDisponible) {
+                        for (var i = 0; i < ddlTalla.options.length; i++) {
+                            var option = ddlTalla.options[i];
+                            option.style.display = (option.value === "Acceso al evento") ? "block" : "none";
+                        }
+                    }
+                }
+                // **Segundo caso: Ciudad o estado NO está bloqueado**
+                else {
+                    var otrosRecuerdosDisponibles = [];
+                    var accesoDisponible = false;
+
                     for (var i = 0; i < ddlTalla.options.length; i++) {
                         var option = ddlTalla.options[i];
+
                         if (option.value === "PatchLocal") {
-                            option.style.display = "none"; // Ocultar "PatchLocal"
+                            option.style.display = "none"; // PatchLocal no se muestra en este caso
+                        } else if (option.value === "Acceso al evento") {
+                            accesoDisponible = true;
+                            option.style.display = "none"; // Por defecto, ocultamos Acceso al evento
                         } else {
-                            option.style.display = "block"; // Mostrar las demás opciones
+                            otrosRecuerdosDisponibles.push(option.value);
+                        }
+                    }
+
+                    var hayStockDisponible = otrosRecuerdosDisponibles.some(talla => stockTallas[talla] > 0);
+
+                    // **Mostrar solo los recuerdos con stock disponible**
+                    for (var i = 0; i < ddlTalla.options.length; i++) {
+                        var option = ddlTalla.options[i];
+                        if (otrosRecuerdosDisponibles.includes(option.value)) {
+                            option.style.display = (stockTallas[option.value] > 0) ? "block" : "none";
+                        }
+                    }
+
+                    // **Si ningún recuerdo tiene stock, mostrar "Acceso al evento"**
+                    if (!hayStockDisponible && accesoDisponible) {
+                        for (var i = 0; i < ddlTalla.options.length; i++) {
+                            var option = ddlTalla.options[i];
+                            option.style.display = (option.value === "Acceso al evento") ? "block" : "none";
                         }
                     }
                 }
             }
 
-            // Detectar cambios en los inputs
             txtLugar.addEventListener("input", verificarCiudades);
             txtEstado.addEventListener("input", verificarCiudades);
         });
+
+
+
+
 
 
 
