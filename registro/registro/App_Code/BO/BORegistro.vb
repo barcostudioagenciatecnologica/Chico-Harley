@@ -19,6 +19,7 @@ Public Class BORegistro
     Private _talla As String
     Private _FechaRegistro As DateTime
     Private _Entregado As Boolean
+    Private _Comida As Boolean
 
 
 
@@ -198,4 +199,14 @@ Public Class BORegistro
             _Entregado = value
         End Set
     End Property
+
+    Public Property Comida As Boolean
+        Get
+            Return _Comida
+        End Get
+        Set(value As Boolean)
+            _Comida = value
+        End Set
+    End Property
+
 End Class

@@ -11,9 +11,25 @@ Partial Class formularioContacto
 
 #Region "Sección: Eventos"
 
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         'Response.Redirect("Cierre.aspx")
         'Exit Sub
+
+        If Not IsPostBack Then
+            ValidarDisponibilidadComida()
+        End If
+    End Sub
+
+    Private Sub ValidarDisponibilidadComida()
+        Dim comidaDisponible As Integer = New DalRegistro().ObtenerTallaPY("Comida")
+
+        ' Si la cantidad de comida es 0 o menor, ocultamos el checkbox
+        If comidaDisponible <= 0 Then
+            divComida.Visible = False
+        Else
+            divComida.Visible = True
+        End If
+
         If Not IsPostBack Then
             CargarPlayeras()
         End If
@@ -101,51 +117,51 @@ Partial Class formularioContacto
                             '            Exit Sub
                             '        End If
                             '    End If
-                            Case "M" : Dim m As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("M")
-                                Dim als As Integer = New DalRegistro().ObtenerTallaPY("M")
+                            Case "Medium" : Dim m As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("Medium")
+                                Dim als As Integer = New DalRegistro().ObtenerTallaPY("Medium")
                                 If m >= als Then
                                     If als = 0 Then
-                                        Response.Write("<script>alert('Lo sentimos pero la talla M de esta playera se ha terminado');</script>")
+                                        Response.Write("<script>alert('Lo sentimos pero la talla Medium de esta playera se ha terminado');</script>")
                                         Exit Sub
                                     End If
                                 End If
-                            Case "L" : Dim l As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("L")
-                                Dim alq As Integer = New DalRegistro().ObtenerTallaPY("L")
+                            Case "Large" : Dim l As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("Large")
+                                Dim alq As Integer = New DalRegistro().ObtenerTallaPY("Large")
                                 If l >= alq Then
                                     If alq = 0 Then
-                                        Response.Write("<script>alert('Lo sentimos pero la talla L de esta playera se ha terminado');</script>")
+                                        Response.Write("<script>alert('Lo sentimos pero la talla Large de esta playera se ha terminado');</script>")
                                         Exit Sub
                                     End If
                                 End If
-                            Case "XL" : Dim xl As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("XL")
-                                Dim alm As Integer = New DalRegistro().ObtenerTallaPY("XL")
+                            Case "XLarge" : Dim xl As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("XLarge")
+                                Dim alm As Integer = New DalRegistro().ObtenerTallaPY("XLarge")
                                 If xl >= alm Then
                                     If alm = 0 Then
-                                        Response.Write("<script>alert('Lo sentimos pero la talla XL de esta playera se ha terminado');</script>")
+                                        Response.Write("<script>alert('Lo sentimos pero la talla XLarge de esta playera se ha terminado');</script>")
                                         Exit Sub
                                     End If
                                 End If
-                            Case "P" : Dim P As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("P")
-                                Dim alx As Integer = New DalRegistro().ObtenerTallaPY("P")
+                            Case "Patch" : Dim P As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("Patch")
+                                Dim alx As Integer = New DalRegistro().ObtenerTallaPY("Patch")
                                 If P >= alx Then
                                     If alx = 0 Then
                                         Response.Write("<script>alert('Lo sentimos pero los parches se han terminado');</script>")
                                         Exit Sub
                                     End If
                                 End If
-                            Case "Comida" : Dim Comida As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("Comida")
-                                Dim comd As Integer = New DalRegistro().ObtenerTallaPY("Comida")
-                                If Comida >= comd Then
-                                    If comd = 0 Then
-                                        Response.Write("<script>alert('Lo sentimos pero la comida se ah terminado');</script>")
-                                        Exit Sub
-                                    End If
-                                End If
-                            Case "Nada" : Dim nada As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("Nada")
-                                Dim nda As Integer = New DalRegistro().ObtenerTallaPY("Nada")
+                            Case "Acceso al evento" : Dim nada As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("Acceso al evento")
+                                Dim nda As Integer = New DalRegistro().ObtenerTallaPY("Acceso al evento")
                                 If nada >= nda Then
                                     If nda = 0 Then
                                         Response.Write("<script>alert('Lo sentimos ya no se puede REGISTRAR');</script>")
+                                        Exit Sub
+                                    End If
+                                End If
+                            Case "PatchLocal" : Dim pl As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("PatchLocal")
+                                Dim plo As Integer = New DalRegistro().ObtenerTallaPY("PatchLocal")
+                                If pl >= plo Then
+                                    If plo = 0 Then
+                                        Response.Write("<script>alert('Lo sentimos pero los Parches Locales se han terminado');</script>")
                                         Exit Sub
                                     End If
                                 End If
@@ -177,6 +193,7 @@ Partial Class formularioContacto
             End If
         End If
     End Sub
+
     Protected Function EnviarCorreo(ByVal id As Integer) As Boolean
         Dim boRegistro As BORegistro = New DalRegistro().ObtenerPorIdRegistro(id)
         Dim dalRegistro As New DalRegistro()
@@ -266,17 +283,19 @@ Partial Class formularioContacto
         txtCilindrada.Text = String.Empty
         txtEmail.Text = String.Empty
         txtVin.Text = String.Empty
+        chkComida.Checked = False
+
     End Sub
 
     Private Sub CargarPlayeras()
         Dim boItems As New List(Of BOItem)
-        Dim s As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("S")
-        Dim m As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("M")
-        Dim l As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("L")
-        Dim xl As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("XL")
-        Dim p As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("P")
-        Dim comd As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("Comida")
-        Dim nda As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("Nada")
+        Dim s As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("Small")
+        Dim m As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("Medium")
+        Dim l As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("Large")
+        Dim xl As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("XLarge")
+        Dim p As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("Patch")
+        Dim nda As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("Acceso al evento")
+        Dim PL As Integer = New DalRegistro().ObtenerTotalPlayerasPorTalla("PatchLocal")
 
         ' Mensajes de depuración para verificar los valores
         Debug.WriteLine("s: " & s)
@@ -284,16 +303,16 @@ Partial Class formularioContacto
         Debug.WriteLine("l: " & l)
         Debug.WriteLine("xl: " & xl)
         Debug.WriteLine("p: " & p)
-        Debug.WriteLine("comd: " & comd)
         Debug.WriteLine("nda: " & nda)
+        Debug.WriteLine("pl: " & pl)
 
         boItems.Add(New BOItem("SELECCIONE...", "Z"))
-        boItems.Add(New BOItem("Medium", "M"))
-        boItems.Add(New BOItem("Large", "L"))
-        boItems.Add(New BOItem("XLarge", "XL"))
-        boItems.Add(New BOItem("Patch", "P"))
-        boItems.Add(New BOItem("Comida", "Comida"))
-        boItems.Add(New BOItem("Acceso al evento", "Nada"))
+        boItems.Add(New BOItem("Medium", "Medium"))
+        boItems.Add(New BOItem("Large", "Large"))
+        boItems.Add(New BOItem("XLarge", "XLarge"))
+        boItems.Add(New BOItem("Patch", "Patch"))
+        boItems.Add(New BOItem("Acceso al evento", "Acceso al evento"))
+        boItems.Add(New BOItem("Parche Local", "PatchLocal"))
 
         ' Mensaje de depuración para verificar las opciones agregadas
         For Each item As BOItem In boItems
@@ -305,6 +324,9 @@ Partial Class formularioContacto
         ddlTalla.DataValueField = "Valor"
         ddlTalla.DataTextField = "Talla"
         ddlTalla.DataBind()
+
+        'ddlTalla.Items.FindByValue("PatchLocal").Attributes.Add("style", "display:none;")
+
     End Sub
 
     'Private Sub CargarParche()
@@ -374,7 +396,8 @@ Partial Class formularioContacto
                    .NoSerieVin = txtVin.Text.ToLower().Trim(),
                    .Procedencia = txtLugar.Text.ToLower().Trim() + ", " + txtEstado.Text.ToLower().Trim(),
                    .Talla = "NA",
-                   .Lider = Convert.ToBoolean(Request.Form("Lider"))
+                   .Lider = Convert.ToBoolean(Request.Form("Lider")),
+                   .Comida = chkComida.Checked
                }
         If ddlTalla.SelectedValue <> "Z" Then
             obj.Talla = ddlTalla.SelectedValue

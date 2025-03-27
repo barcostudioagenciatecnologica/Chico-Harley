@@ -30,6 +30,16 @@
 <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
 
+<style>
+
+    .custom-checkbox input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+</style>
+
+
 </head>
 <body>
  
@@ -206,6 +216,17 @@
 				</div>
 			</div> 
 			    <br>
+
+            <div class="row" id="divComida" runat="server" ClientIDMode="Static">
+                <div class="col-sm-12">
+                    <label>Incluir comida:</label>
+                    <span style="margin-left: 20px; font-weight: bold; color: red;">NOTA: La comida puede demorar.</span>
+                </div>
+                <div class="col-sm-12">
+                    <asp:CheckBox runat="server" ID="chkComida" class="form-control1" CssClass="custom-checkbox" />
+                </div>
+            </div> 
+            <br>
 
 
 
@@ -418,31 +439,71 @@ window.addEventListener("scroll", function(){
         });
 
 
-
-        //// Para ocultar la parte de Recuerdos si son de Tehuacan y asignarles Parche 
-        
+        //// Mostrar solo Parcht y Acceso al evento en Recuerdoss si son de Tehuacan y asignarles Parche 
         document.addEventListener("DOMContentLoaded", function () {
             var txtLugar = document.getElementById('<%= txtLugar.ClientID %>');
             var txtEstado = document.getElementById('<%= txtEstado.ClientID %>');
             var divRecuerdos = document.getElementById('divRecuerdos'); 
-            var ddlTalla = document.getElementById('<%= ddlTalla.ClientID %>'); 
+            var ddlTalla = document.getElementById('<%= ddlTalla.ClientID %>');
 
             function normalizarTexto(texto) {
                 return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            }
+
+            function quitarEspacios(texto) {
+                return texto.replace(/\s+/g, ''); // Elimina todos los espacios
             }
 
             function verificarCiudades() {
                 var ciudad = normalizarTexto(txtLugar.value.trim());
                 var estado = normalizarTexto(txtEstado.value.trim());
 
-                // Lista de ciudades que deben ocultar la sección de recuerdos
-                var ciudadesBloqueadas = ["tehuacan", "santa maria coapan", "miahuatlan", "ajalpan"];
+                // Convertimos en listas de palabras individuales
+                var palabrasCiudad = ciudad.split(/\s+/);
+                var palabrasEstado = estado.split(/\s+/);
 
-                if (ciudadesBloqueadas.includes(ciudad) || ciudadesBloqueadas.includes(estado)) {
-                    divRecuerdos.style.display = "none"; // Oculta la sección de recuerdos
-                    ddlTalla.value = "P"; // Selecciona "Patch (P)" en el dropdown
+                // Lista de ciudades bloqueadas
+                var ciudadesBloqueadas = [
+                    "tehuacan", "santa maria coapan", "miahuatlan", "ajalpan", "tepanco de lopez",
+                    "nicolas bravo", "vicente guerrero", "san antonio cañada", "altepexi",
+                    "san gabriel chilac", "zapotitlan", "atexcal"
+                ];
+
+                // Normalizar y eliminar espacios de la lista de ciudades bloqueadas
+                var ciudadesBloqueadasNormalizadas = ciudadesBloqueadas.map(ciudad => quitarEspacios(normalizarTexto(ciudad)));
+
+                // Verificar si alguna palabra del input está en la lista de ciudades bloqueadas
+                var ciudadCoincide = palabrasCiudad.some(palabra =>
+                    ciudadesBloqueadasNormalizadas.some(ciudadBloqueada => ciudadBloqueada.includes(palabra))
+                );
+
+                var estadoCoincide = palabrasEstado.some(palabra =>
+                    ciudadesBloqueadasNormalizadas.some(ciudadBloqueada => ciudadBloqueada.includes(palabra))
+                );
+
+                if (ciudadCoincide || estadoCoincide) {
+                    // Mostrar todas las opciones, incluyendo "PatchLocal"
+                    divRecuerdos.style.display = "block"; // Asegura que la sección de recuerdos se muestre siempre
+
+                    // Mostrar "PatchLocal" y "Acceso al evento" en el select
+                    for (var i = 0; i < ddlTalla.options.length; i++) {
+                        var option = ddlTalla.options[i];
+                        if (option.value !== "PatchLocal" && option.value !== "Acceso al evento") {
+                            option.style.display = "none"; // Ocultar otras opciones
+                        } else {
+                            option.style.display = "block"; // Mostrar "PatchLocal" y "Acceso al evento"
+                        }
+                    }
                 } else {
-                    divRecuerdos.style.display = "block"; // Muestra la sección de recuerdos
+                    // Mostrar todas las opciones, menos "PatchLocal"
+                    for (var i = 0; i < ddlTalla.options.length; i++) {
+                        var option = ddlTalla.options[i];
+                        if (option.value === "PatchLocal") {
+                            option.style.display = "none"; // Ocultar "PatchLocal"
+                        } else {
+                            option.style.display = "block"; // Mostrar las demás opciones
+                        }
+                    }
                 }
             }
 
@@ -450,6 +511,57 @@ window.addEventListener("scroll", function(){
             txtLugar.addEventListener("input", verificarCiudades);
             txtEstado.addEventListener("input", verificarCiudades);
         });
+
+
+
+        //// Para ocultar la parte del checkBox si son de Tehuacan
+        document.addEventListener("DOMContentLoaded", function () {
+            var txtLugar = document.getElementById('<%= txtLugar.ClientID %>');
+            var txtEstado = document.getElementById('<%= txtEstado.ClientID %>');
+            var divComida = document.getElementById("divComida");
+
+            function normalizarTexto(texto) {
+                return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            }
+
+            function quitarEspacios(texto) {
+                return texto.replace(/\s+/g, ''); // Elimina todos los espacios
+            }
+
+            function verificarCiudades() {
+                var ciudad = normalizarTexto(txtLugar.value.trim());
+                var estado = normalizarTexto(txtEstado.value.trim());
+
+                var palabrasCiudad = ciudad.split(/\s+/);
+                var palabrasEstado = estado.split(/\s+/);
+
+                var ciudadesBloqueadas = [
+                    "tehuacan", "santa maria coapan", "miahuatlan", "ajalpan", "tepanco de lopez",
+                    "nicolas bravo", "vicente guerrero", "san antonio cañada", "altepexi",
+                    "san gabriel chilac", "zapotitlan", "atexcal"
+                ];
+
+                var ciudadesBloqueadasNormalizadas = ciudadesBloqueadas.map(ciudad => quitarEspacios(normalizarTexto(ciudad)));
+
+                var ciudadCoincide = palabrasCiudad.some(palabra =>
+                    ciudadesBloqueadasNormalizadas.some(ciudadBloqueada => ciudadBloqueada.includes(palabra))
+                );
+
+                var estadoCoincide = palabrasEstado.some(palabra =>
+                    ciudadesBloqueadasNormalizadas.some(ciudadBloqueada => ciudadBloqueada.includes(palabra))
+                );
+
+                if (ciudadCoincide || estadoCoincide) {
+                    divComida.style.display = "none"; // Oculta el checkbox
+                } else {
+                    divComida.style.display = "block"; // Muestra el checkbox si no coincide
+                }
+            }
+
+            txtLugar.addEventListener("input", verificarCiudades);
+            txtEstado.addEventListener("input", verificarCiudades);
+        });
+
 
     </script>
 

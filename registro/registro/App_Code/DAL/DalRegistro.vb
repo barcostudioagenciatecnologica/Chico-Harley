@@ -40,6 +40,7 @@ Public Class DalRegistro
             temp.Folio = CType(dr("Folio"), String)
             temp.Talla = CType(dr("Talla"), String)
             temp.Procedencia = CType(dr("Procedencia"), String)
+            temp.Comida = CType(dr("Comida"), String)
             temp.Entregado = CType(dr("entregado"), Boolean)
             listaBoRegistro.Add(temp)
         Next
@@ -301,6 +302,7 @@ Public Class DalRegistro
         cmd.Parameters.AddWithValue("@Email", registro.Email)
         cmd.Parameters.AddWithValue("@No_Serie_VIN", registro.NoSerieVin)
         cmd.Parameters.AddWithValue("@Talla", registro.Talla)
+        cmd.Parameters.AddWithValue("@Comida ", registro.Comida)
 
         Dim agrego As SqlParameter = New SqlParameter("@VResp", SqlDbType.Int)
         agrego.Direction = ParameterDirection.Output

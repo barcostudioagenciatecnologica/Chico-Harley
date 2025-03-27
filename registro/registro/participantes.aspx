@@ -108,7 +108,12 @@
                                 <asp:BoundField DataField="NombreMotoclub" HeaderText="Motoclub"  />
                                 <asp:BoundField DataField="Celular" HeaderText="Celular"  />
                                 <asp:BoundField DataField="Email" HeaderText="Email" />
-                                <asp:BoundField DataField="Talla" HeaderText="Talla" />
+                                <asp:BoundField DataField="Talla" HeaderText="Articulos" />
+                                <asp:TemplateField HeaderText="Comida">
+                                <ItemTemplate>
+                                    <%# IIf(Convert.ToBoolean(Eval("Comida")), "Si", "No") %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                                  <asp:BoundField DataField="Procedencia" HeaderText="Procedencia" />
                                 <asp:BoundField DataField="Clave_Registro" HeaderText="Clave"/>
                                <asp:TemplateField HeaderText="Generar">

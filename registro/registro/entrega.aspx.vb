@@ -52,10 +52,10 @@ Partial Class entrega
         tablagv.Columns.Add("Celular")
         tablagv.Columns.Add("Email")
         tablagv.Columns.Add("TallaPlayera")
-        tablagv.Columns.Add("TallaParche")
         tablagv.Columns.Add("Clave_Registro")
         tablagv.Columns.Add("Procedencia")
         tablagv.Columns.Add("Entregado")
+        tablagv.Columns.Add("Comida")
 
         For Each temp As BORegistro In lista_Registros
             Dim rw1 As DataRow = tablagv.NewRow
@@ -74,10 +74,10 @@ Partial Class entrega
             rw1("Celular") = temp.Celular
             rw1("Email") = temp.Email
             rw1("TallaPlayera") = temp.Talla
-            rw1("TallaParche") = temp.Talla
             rw1("Clave_Registro") = String.Empty
             rw1("Procedencia") = temp.Procedencia
             rw1("Entregado") = temp.Entregado
+            rw1("Comida") = temp.Comida
             tablagv.Rows.Add(rw1)
         Next
         tablagv.AcceptChanges()
@@ -133,8 +133,18 @@ Partial Class entrega
         If boton IsNot Nothing Then
             Dim idRegistro As Integer = CInt(boton.CommandArgument)
             Dim resp As String = New DalRegistro().ActualizarEntregado(idRegistro)
-            Mensaje(resp)
-            Response.Redirect("entrega.aspx")
+            Dim mensaje As String
+            If resp = "1" Then
+                mensaje = "Registro entregado correctamente."
+            Else
+                mensaje = "Hubo un error al entregar el registro."
+            End If
+
+            ' Generar el script manualmente sin interpolación de cadenas
+            Dim script As String = "<script type='text/javascript'>alert('" & mensaje & "'); window.location.href='entrega.aspx';</script>"
+
+            Response.Write(script)
+            Response.End()
         End If
     End Sub
 

@@ -54,6 +54,7 @@ Partial Class participantes
         tablagv.Columns.Add("Talla")
         tablagv.Columns.Add("Clave_Registro")
         tablagv.Columns.Add("Procedencia")
+        tablagv.Columns.Add("Comida")
 
         For Each temp As BORegistro In lista_Registros
             Dim rw1 As DataRow = tablagv.NewRow
@@ -74,6 +75,7 @@ Partial Class participantes
             rw1("Talla") = temp.Talla
             rw1("Clave_Registro") = temp.ClaveRegistro
             rw1("Procedencia") = temp.Procedencia
+            rw1("Comida") = temp.Comida
             tablagv.Rows.Add(rw1)
         Next
         tablagv.AcceptChanges()

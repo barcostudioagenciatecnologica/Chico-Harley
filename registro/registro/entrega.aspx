@@ -107,11 +107,19 @@
                                 <asp:BoundField DataField="NombreMotoclub" HeaderText="Motoclub"  />
                                 <asp:BoundField DataField="Celular" HeaderText="Celular"  />
                                 <asp:BoundField DataField="Email" HeaderText="Email" />
-                                <asp:BoundField DataField="TallaPlayera" HeaderText="TallaPlayera" />
-                                <asp:BoundField DataField="TallaParche" HeaderText="TallaParche" />
+                                <asp:BoundField DataField="TallaPlayera" HeaderText="Articulo a entregar" />
+                                <asp:TemplateField HeaderText="Comida">
+                                    <ItemTemplate>
+                                        <%# IIf(Convert.ToBoolean(Eval("Comida")), "Si", "No") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                  <asp:BoundField DataField="Procedencia" HeaderText="Procedencia" />
                                 <asp:BoundField DataField="Clave_Registro" HeaderText="Clave"/>
-                                <asp:BoundField DataField="Entregado" HeaderText="Entregado"/>
+                                <asp:TemplateField HeaderText="Entregado">
+                                    <ItemTemplate>
+                                        <%# IIf(Convert.ToBoolean(Eval("Entregado")), "Entregado", "En espera") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                <asp:TemplateField HeaderText="Entregar">
                                     <ItemTemplate>
                                         <asp:Button style="top:5px; position:relative" ID="btnEntregarPlayera"
