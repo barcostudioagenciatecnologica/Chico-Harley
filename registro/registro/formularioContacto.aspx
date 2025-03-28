@@ -220,7 +220,7 @@
             <div class="row" id="divComida" runat="server" ClientIDMode="Static">
                 <div class="col-sm-12">
                     <label>Incluir comida:</label>
-                    <span style="margin-left: 20px; font-weight: bold; color: red;">NOTA: La comida puede demorar.</span>
+                    <span style="margin-left: 20px; font-weight: bold;</span>
                 </div>
                 <div class="col-sm-12">
                     <asp:CheckBox runat="server" ID="chkComida" class="form-control1" CssClass="custom-checkbox" />
@@ -524,7 +524,7 @@ window.addEventListener("scroll", function(){
                             option.style.display = "none"; // PatchLocal no se muestra en este caso
                         } else if (option.value === "Acceso al evento") {
                             accesoDisponible = true;
-                            option.style.display = "none"; // Por defecto, ocultamos Acceso al evento
+                            option.style.display = "none"; // Por defecto, se oculta Acceso al evento
                         } else {
                             otrosRecuerdosDisponibles.push(option.value);
                         }
@@ -598,7 +598,7 @@ window.addEventListener("scroll", function(){
                 );
 
                 if (ciudadCoincide || estadoCoincide) {
-                    divComida.style.display = "none"; // Oculta el checkbox
+                    divComida.style.display = "none"; // Se Oculta el checkbox
                 } else {
                     divComida.style.display = "block"; // Muestra el checkbox si no coincide
                 }

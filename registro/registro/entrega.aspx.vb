@@ -74,7 +74,7 @@ Partial Class entrega
             rw1("Celular") = temp.Celular
             rw1("Email") = temp.Email
             rw1("TallaPlayera") = temp.Talla
-            rw1("Clave_Registro") = String.Empty
+            rw1("Clave_Registro") = temp.ClaveRegistro
             rw1("Procedencia") = temp.Procedencia
             rw1("Entregado") = temp.Entregado
             rw1("Comida") = temp.Comida
