@@ -466,7 +466,7 @@ window.addEventListener("scroll", function(){
                
 
                 var ciudadesBloqueadas = [
-                    "tehuacan", "santa maria coapan", "miahuatlan", "ajalpan", "tepanco de lopez",
+                    "tehuacan", "santa maria coapan", "santiago miahuatlan", "ajalpan", "tepanco de lopez",
                     "nicolas bravo", "vicente guerrero", "san antonio cañada", "altepexi",
                     "san gabriel chilac", "zapotitlan", "atexcal"
                 ];
@@ -580,7 +580,7 @@ window.addEventListener("scroll", function(){
 
                 // Lista de ciudades bloqueadas
                 var ciudadesBloqueadas = [
-                    "tehuacan", "santa maria coapan", "miahuatlan", "ajalpan", "tepanco de lopez",
+                    "tehuacan", "santa maria coapan", "santiago miahuatlan", "ajalpan", "tepanco de lopez",
                     "nicolas bravo", "vicente guerrero", "san antonio cañada", "altepexi",
                     "san gabriel chilac", "zapotitlan", "atexcal"
                 ];
