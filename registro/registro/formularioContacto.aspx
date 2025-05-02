@@ -566,14 +566,17 @@ window.addEventListener("scroll", function(){
             var txtEstado = document.getElementById('<%= txtEstado.ClientID %>');
             var divComida = document.getElementById("divComida");
 
+            // Función para normalizar el texto eliminando acentos y convirtiendo a minúsculas
             function normalizarTexto(texto) {
                 return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
             }
 
+            // Función para eliminar espacios en blanco
             function quitarEspacios(texto) {
                 return texto.replace(/\s+/g, ''); // Elimina todos los espacios
             }
 
+            // Función para verificar si las ciudades o estados están bloqueados
             function verificarCiudades() {
                 var ciudad = normalizarTexto(txtLugar.value.trim());
                 var estado = normalizarTexto(txtEstado.value.trim());
@@ -581,14 +584,17 @@ window.addEventListener("scroll", function(){
                 var palabrasCiudad = ciudad.split(/\s+/);
                 var palabrasEstado = estado.split(/\s+/);
 
+                // Lista de ciudades bloqueadas
                 var ciudadesBloqueadas = [
                     "tehuacan", "santa maria coapan", "miahuatlan", "ajalpan", "tepanco de lopez",
                     "nicolas bravo", "vicente guerrero", "san antonio cañada", "altepexi",
                     "san gabriel chilac", "zapotitlan", "atexcal"
                 ];
 
+                // Normalizamos las ciudades bloqueadas
                 var ciudadesBloqueadasNormalizadas = ciudadesBloqueadas.map(ciudad => quitarEspacios(normalizarTexto(ciudad)));
 
+                // Verificamos si alguna palabra de la ciudad o estado coincide con alguna ciudad bloqueada
                 var ciudadCoincide = palabrasCiudad.some(palabra =>
                     ciudadesBloqueadasNormalizadas.some(ciudadBloqueada => ciudadBloqueada.includes(palabra))
                 );
@@ -597,24 +603,19 @@ window.addEventListener("scroll", function(){
                     ciudadesBloqueadasNormalizadas.some(ciudadBloqueada => ciudadBloqueada.includes(palabra))
                 );
 
+                // Si la ciudad o el estado coinciden con alguna ciudad bloqueada, ocultamos el div
                 if (ciudadCoincide || estadoCoincide) {
-                    divComida.style.display = "none"; // Se Oculta el checkbox
+                    divComida.style.display = "none"; // Ocultamos el checkbox
                 } else {
-                    divComida.style.display = "block"; // Muestra el checkbox si no coincide
+                    divComida.style.display = "block"; // Mostramos el checkbox
                 }
             }
 
+            // Agregamos los eventos para que se ejecute la función al ingresar texto
             txtLugar.addEventListener("input", verificarCiudades);
             txtEstado.addEventListener("input", verificarCiudades);
-        });                divComida.style.display = ciudadCoincide ? "none" : "block";
-            }
-
-            txtLugar.addEventListener("input", verificarCiudades);
-        });                divComida.style.display = ciudadCoincide ? "none" : "block";
-            }
-
-            txtLugar.addEventListener("input", verificarCiudades);
         });
+
 
 
 
