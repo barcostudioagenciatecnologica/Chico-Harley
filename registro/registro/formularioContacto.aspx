@@ -606,7 +606,17 @@ window.addEventListener("scroll", function(){
 
             txtLugar.addEventListener("input", verificarCiudades);
             txtEstado.addEventListener("input", verificarCiudades);
+        });                divComida.style.display = ciudadCoincide ? "none" : "block";
+            }
+
+            txtLugar.addEventListener("input", verificarCiudades);
+        });                divComida.style.display = ciudadCoincide ? "none" : "block";
+            }
+
+            txtLugar.addEventListener("input", verificarCiudades);
         });
+
+
 
 
     </script>
