@@ -460,11 +460,10 @@ window.addEventListener("scroll", function(){
             }
 
             function verificarCiudades() {
-                var ciudad = normalizarTexto(txtLugar.value.trim());
-                var estado = normalizarTexto(txtEstado.value.trim());
+                var ciudad = quitarEspacios(normalizarTexto(txtLugar.value.trim()));
+                var estado = quitarEspacios(normalizarTexto(txtEstado.value.trim()));
 
-                var palabrasCiudad = ciudad.split(/\s+/);
-                var palabrasEstado = estado.split(/\s+/);
+               
 
                 var ciudadesBloqueadas = [
                     "tehuacan", "santa maria coapan", "miahuatlan", "ajalpan", "tepanco de lopez",
@@ -472,15 +471,13 @@ window.addEventListener("scroll", function(){
                     "san gabriel chilac", "zapotitlan", "atexcal"
                 ];
 
-                var ciudadesBloqueadasNormalizadas = ciudadesBloqueadas.map(ciudad => quitarEspacios(normalizarTexto(ciudad)));
-
-                var ciudadCoincide = palabrasCiudad.some(palabra =>
-                    ciudadesBloqueadasNormalizadas.some(ciudadBloqueada => ciudadBloqueada.includes(palabra))
+                var ciudadesBloqueadasNormalizadas = ciudadesBloqueadas.map(ciudad =>
+                    quitarEspacios(normalizarTexto(ciudad))
                 );
 
-                var estadoCoincide = palabrasEstado.some(palabra =>
-                    ciudadesBloqueadasNormalizadas.some(ciudadBloqueada => ciudadBloqueada.includes(palabra))
-                );
+                // Comparación exacta del lugar y estado completos (no palabra por palabra)
+                var ciudadCoincide = ciudadesBloqueadasNormalizadas.includes(ciudad);
+                var estadoCoincide = ciudadesBloqueadasNormalizadas.includes(estado);
 
                 // **Primer caso: Ciudad o estado está bloqueado**
                 if (ciudadCoincide || estadoCoincide) {
@@ -578,11 +575,8 @@ window.addEventListener("scroll", function(){
 
             // Función para verificar si las ciudades o estados están bloqueados
             function verificarCiudades() {
-                var ciudad = normalizarTexto(txtLugar.value.trim());
-                var estado = normalizarTexto(txtEstado.value.trim());
-
-                var palabrasCiudad = ciudad.split(/\s+/);
-                var palabrasEstado = estado.split(/\s+/);
+                var ciudad = quitarEspacios(normalizarTexto(txtLugar.value.trim()));
+                var estado = quitarEspacios(normalizarTexto(txtEstado.value.trim()));
 
                 // Lista de ciudades bloqueadas
                 var ciudadesBloqueadas = [
@@ -591,17 +585,13 @@ window.addEventListener("scroll", function(){
                     "san gabriel chilac", "zapotitlan", "atexcal"
                 ];
 
-                // Normalizamos las ciudades bloqueadas
-                var ciudadesBloqueadasNormalizadas = ciudadesBloqueadas.map(ciudad => quitarEspacios(normalizarTexto(ciudad)));
-
-                // Verificamos si alguna palabra de la ciudad o estado coincide con alguna ciudad bloqueada
-                var ciudadCoincide = palabrasCiudad.some(palabra =>
-                    ciudadesBloqueadasNormalizadas.some(ciudadBloqueada => ciudadBloqueada.includes(palabra))
+                var ciudadesBloqueadasNormalizadas = ciudadesBloqueadas.map(ciudad =>
+                    quitarEspacios(normalizarTexto(ciudad))
                 );
 
-                var estadoCoincide = palabrasEstado.some(palabra =>
-                    ciudadesBloqueadasNormalizadas.some(ciudadBloqueada => ciudadBloqueada.includes(palabra))
-                );
+                // Comparación exacta del lugar y estado completos (no palabra por palabra)
+                var ciudadCoincide = ciudadesBloqueadasNormalizadas.includes(ciudad);
+                var estadoCoincide = ciudadesBloqueadasNormalizadas.includes(estado);
 
                 // Si la ciudad o el estado coinciden con alguna ciudad bloqueada, ocultamos el div
                 if (ciudadCoincide || estadoCoincide) {
