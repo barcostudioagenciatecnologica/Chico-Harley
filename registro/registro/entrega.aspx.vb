@@ -1,6 +1,7 @@
 ﻿Imports System.Data
 Imports System.Net
 Imports System.Net.Mail
+Imports System.Web.Services
 
 Partial Class entrega
     Inherits System.Web.UI.Page
@@ -85,6 +86,35 @@ Partial Class entrega
         Me.DatosDG.DataBind()
         Session.Add("listaRegistros", lista_Registros)
     End Sub
+
+    <System.Web.Services.WebMethod()>
+    Public Shared Function ObtenerStock() As List(Of StockItem)
+        Dim lista As New List(Of StockItem)
+        Dim objDAL As New DalRegistro()
+        Dim registros As List(Of BORegistro) = objDAL.ObtenerStock()
+
+        For Each temp As BORegistro In registros
+            lista.Add(New StockItem With {
+            .ID = temp.Id,
+            .Talla = temp.Talla,
+            .Cantidad = temp.Cantidad
+        })
+        Next
+
+        Return lista
+    End Function
+
+    <WebMethod()>
+    Public Shared Function ActualizarStock(ByVal id As Integer, ByVal cantidad As Integer) As Boolean
+        Dim dal As New DalRegistro()
+        Return dal.ActualizarStock(id, cantidad)
+    End Function
+
+    Public Class StockItem
+        Public Property Id As Integer
+        Public Property Talla As String
+        Public Property Cantidad As Integer
+    End Class
 
     Private Function seleccionarId() As Integer
         Dim row As GridViewRow = DatosDG.SelectedRow

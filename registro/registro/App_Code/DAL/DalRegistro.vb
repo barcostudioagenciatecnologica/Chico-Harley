@@ -52,6 +52,49 @@ Public Class DalRegistro
 
 
     End Function
+
+    Public Function ObtenerStock() As List(Of BORegistro)
+        Dim listaBoRegistro As New List(Of BORegistro)()
+        Dim dt As DataTable = New DataTable()
+        Dim cmd As SqlCommand = New SqlCommand("CH_ObtenerStock", _con)
+        cmd.CommandType = CommandType.StoredProcedure
+
+        Dim da As SqlDataAdapter = New SqlDataAdapter(cmd)
+        da.Fill(dt)
+
+        For Each dr As DataRow In dt.Rows
+            Dim temp As New BORegistro()
+            temp.Id = CType(dr("ID"), Integer)
+            temp.Talla = CType(dr("Talla"), String)
+            temp.Cantidad = CType(dr("Cantidad"), Integer)
+            temp.Descripcion = CType(dr("Descripcion"), String)
+            listaBoRegistro.Add(temp)
+        Next
+
+        Return listaBoRegistro
+    End Function
+
+    Public Function ActualizarStock(ByVal ID As Integer, ByVal cantidad As Integer) As String
+        Dim resp As String = String.Empty
+        Dim cmd As SqlCommand = New SqlCommand("CH_Material_ActualizarCantidad_SP", _con)
+        cmd.Parameters.AddWithValue("@ID", ID)
+        cmd.Parameters.AddWithValue("@NuevaCantidad", cantidad)
+        cmd.CommandType = CommandType.StoredProcedure
+
+        Dim agrego As SqlParameter = New SqlParameter("@VResp", SqlDbType.VarChar, 7)
+        agrego.Direction = ParameterDirection.Output
+        cmd.Parameters.Add(agrego)
+        Try
+            _con.Open()
+            cmd.ExecuteNonQuery()
+            resp = cmd.Parameters("@VResp").Value.ToString()
+            _con.Close()
+        Catch ex As Exception
+            _con.Close()
+        End Try
+        Return resp
+    End Function
+
     Public Function ObtenerIDporCorreo(ByVal Correo As String) As Integer
         Dim sql As String = String.Empty
         If _con.State = ConnectionState.Closed Then

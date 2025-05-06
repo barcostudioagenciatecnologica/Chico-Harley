@@ -30,6 +30,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link href="css/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script type="text/javascript" src="tools/jquery-1.8.2.min.js"></script>
 </head>
 <body>
@@ -45,13 +46,16 @@
                     <nav>
                         <ul>
                              <li>
+                                <a id="stock" href="#" onclick="abrirModal(); return false;"><i class="fa fa-boxes"></i> STOCK</a>
+                            </li>
+                             <li>
                                 <a id="entrega" href="entrega.aspx"><i class="fa fa-certificate" aria-hidden="true"></i> ENTREGA DE ARTICULOS</a>
                             </li>
                            <li>
                                 <a id="active" href="participantes.aspx"><i class="fa fa-users" aria-hidden="true"></i> PARTICIPANTES</a>
                             </li>
                             <li>
-                                <asp:LinkButton  aria-hidden="true" ID="LinkButton1" runat="server"> <i class="fa fa-sign-out"></i>  CERRAR SESIÓN</asp:LinkButton>
+                                <asp:LinkButton  aria-hidden="true" ID="LinkButton1" runat="server"> <i class="fa fa-sign-out"></i> CERRAR SESIÓN</asp:LinkButton>
                             </li>
                         </ul>
                     </nav>
@@ -61,6 +65,7 @@
         
   	    <div class="letra" >
 		    <div  data-ng-controller="UserController"  class="modal-dialog modal-sm">
+
             <!-- Modal content no 1-->
             <div class="modal-content">
               <div class="modal-header">
@@ -136,7 +141,8 @@
                                         OnClientClick="return confirm('Deseas eliminar este registro?');"
                                         runat="server" />
                                 </ItemTemplate>
-                            </asp:TemplateField>                
+                            </asp:TemplateField>     
+                                
 <%--                                
         <asp:TemplateField ShowHeader="False">
             <ItemTemplate>
@@ -163,6 +169,8 @@
         </div>
                         </div>
                     </div> </div> </div></div></div>
+
+
    
     </form>
     <br>
@@ -253,9 +261,29 @@ Tehuacán, Puebla. Casa Club en San Diego Chalma
 
 
 </footer>
+              
+<!-- Modal de STOCK -->
+<div id="modalStock" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); z-index:9999; justify-content:center; align-items:center;">
+    <div class="modal-content" style="background:#fff; padding:20px; border-radius:8px; width:400px; max-width:90%; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+        <h2 style="margin-top:0;">Stock de Material</h2>
+        <table id="tablaStock" style="width:100%; border-collapse:collapse;">
+            <thead>
+                <tr>
+                    <th style="border-bottom:1px solid #ccc; padding:8px; text-align:left;">Talla</th>
+                    <th style="border-bottom:1px solid #ccc; padding:8px; text-align:left;">Cantidad</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div style="margin-top:20px; text-align:right;">
+            <button onclick="cerrarModal()" style="padding:8px 12px;">Cerrar</button>
+        </div>
+    </div>
+</div>
 
 
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function checar() {
             if (boton.disabled == true) {
@@ -264,6 +292,61 @@ Tehuacán, Puebla. Casa Club en San Diego Chalma
                 boton.disabled = true;
             }
         }
+
+        function abrirModal() {
+            document.getElementById('modalStock').style.display = 'flex';
+            cargarStock();
+        }
+
+        function cerrarModal() {
+            document.getElementById('modalStock').style.display = 'none';
+        }
+
+        function cargarStock() {
+            $.ajax({
+                type: "POST",
+                url: "entrega.aspx/ObtenerStock",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var datos = response.d;
+                    var html = "";
+                    for (var i = 0; i < datos.length; i++) {
+                        html += `<tr>
+                    <td>${datos[i].Talla}</td>
+                    <td style="display: flex; align-items: center;">
+                        <input type='number' value='${datos[i].Cantidad}' data-id='${datos[i].Id}' style="flex: 1; padding: 4px;" />
+                        <button onclick='actualizarCantidad(${datos[i].Id}, this)' style="margin-left: 8px; padding: 4px 8px;">Actualizar</button>
+                    </td>
+                </tr>`;
+                    }
+                    $("#tablaStock tbody").html(html);
+                },
+                error: function (err) {
+                    alert("Error al obtener stock.");
+                }
+            });
+        }
+
+
+        function actualizarCantidad(id, boton) {
+            var input = $(boton).siblings("input");
+            var cantidad = input.val();
+
+            $.ajax({
+                type: "POST",
+                url: "participantes.aspx/ActualizarStock",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ id: id, cantidad: parseInt(cantidad) }),
+                success: function (response) {
+                    alert("Cantidad actualizada correctamente.");
+                },
+                error: function () {
+                    alert("Error al actualizar la cantidad.");
+                }
+            });
+        }
+
     </script>
     <script type="text/javascript" src="js/menu1.js"></script>
 </body>

@@ -20,6 +20,8 @@ Public Class BORegistro
     Private _FechaRegistro As DateTime
     Private _Entregado As Boolean
     Private _Comida As Boolean
+    Private _Cantidad As Integer
+    Private _Descripcion As String
 
 
 
@@ -28,6 +30,22 @@ Public Class BORegistro
 
 #End Region
 
+    Public Property Cantidad As Integer
+        Get
+            Return _Cantidad
+        End Get
+        Set
+            _Cantidad = Value
+        End Set
+    End Property
+    Public Property Descripcion As String
+        Get
+            Return _Descripcion
+        End Get
+        Set
+            _Descripcion = Value
+        End Set
+    End Property
     Public Property Id as Integer
         Get
             return _id
