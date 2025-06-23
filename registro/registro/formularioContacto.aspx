@@ -104,7 +104,7 @@
 	<center>
 	<div class="letra">
 		<form  id="contactForm" runat="server" method="post" novalidate >
-
+           <H2>EL REGISTRO SE ENCUENTRA TEMPORALMENTE SUSPENDIDO</H2>
 		<div class="row">
 				<div class="col-md-12">
 					<label>Nombre Completo (Piloto):</label>
@@ -265,18 +265,12 @@ Cualquier duda favor de comunicarse al 2381505344 o bien escribir al correo elec
 			<div class="row" style="text-align:center; position:relative; margin:0 auto; width:100%; max-width:1920px  ; float:inherit;">
 				
                 
-                <div style="display: flex; justify-content: center;">
-				
+                <%--<div style="display: flex; justify-content: center;">--%>
+				 <div style="display: none; justify-content: center;">
                     <asp:button runat="server" ID="btnRegistrate" Text="REGISTRATE" type="submit" CssClass="button8" style="width: auto;"/>
                       
 				</div>
 
-
-				<%--<div class="col-sm-6" style="text-align:center">
-                    
-					<asp:button PostBackUrl="../Default.aspx" runat="server" ID="btnNuevo" Text="NUEVO REGISTRO" CssClass="button9"  />
-                        
-				</div>--%>
 			</div>
 			</center>
 			

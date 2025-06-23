@@ -65,6 +65,7 @@ Partial Class formularioContacto
 
     Protected Sub btnRegistrate_Click(sender As Object, e As EventArgs) Handles btnRegistrate.Click
 
+        Return 'quitar esto para seguir registrandose
         Dim boRegistro As New BORegistro()
         Dim valido As Boolean = True
         'Select Case txtLugar.Text.ToLower().Trim()
